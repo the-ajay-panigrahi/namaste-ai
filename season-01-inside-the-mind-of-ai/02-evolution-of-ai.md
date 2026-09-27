@@ -63,13 +63,13 @@ Each stage represents a fundamental shift in how machines learn and operate.
 
 ![AI Timeline Summary Board](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/16-ai-timeline-summary.jpg)
 
-### Early Foundations: Turing Test and Dartmouth Conference (1950s)
+### Early Foundations: Turing Test, Dartmouth Conference, and Deep Blue
 
-In 1950, **Alan Turing** published his landmark paper proposing the famous **Turing Test** to explore the fundamental question: *"Can machines think?"*
-
-In 1955-1956, **John McCarthy**, Marvin Minsky, Nathaniel Rochester, and Claude Shannon organized the Dartmouth Summer Research Project on Artificial Intelligence, formally coining the term **"Artificial Intelligence"** with the ambitious belief:
-
-> *"Every aspect of learning and intelligence could, in principle, be described precisely enough for a machine to simulate it."*
+- **1950**: **Alan Turing** published his landmark paper proposing the famous **Turing Test** to explore the fundamental question: *"Can machines think?"*
+- **1956**: **John McCarthy**, Marvin Minsky, Nathaniel Rochester, and Claude Shannon organized the Dartmouth Summer Research Project on Artificial Intelligence, formally coining the term **"Artificial Intelligence"** with the ambitious belief:
+  > *"Every aspect of learning and intelligence could, in principle, be described precisely enough for a machine to simulate it."*
+- **1986**: Emergence of discussions around **Synthetic Intelligence** as an alternative framing for machine cognition.
+- **1997**: **IBM Deep Blue defeated Garry Kasparov**, the reigning world chess champion. This historic moment sparked global debate: *Have machines become smarter than humans?* Deep Blue demonstrated the pinnacle of complex heuristic evaluation and tree search in classical AI.
 
 ![Early AI Foundations: Turing and McCarthy](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/03-early-ai-foundations-turing-mccarthy.jpg)
 
@@ -322,7 +322,7 @@ The launch of ChatGPT triggered an unprecedented race among technology companies
 | :--- | :--- | :--- |
 | **OpenAI** | GPT-4, GPT-4o, o1 | Pioneered the LLM revolution with ChatGPT |
 | **Google DeepMind** | Gemini, PaLM, AlphaFold | Multimodal AI, protein structure prediction |
-| **Anthropic** | Claude 3.5, Claude 4 | Focus on AI safety and constitutional AI |
+| **Anthropic** | Claude series (Claude 3.5 Sonnet, Claude 3.5 Haiku) | Focus on AI safety and constitutional AI |
 | **Meta** | LLaMA 3, Code LLaMA | Open-source LLMs democratizing AI access |
 | **Microsoft** | Copilot, Phi | Deep integration of AI into productivity tools |
 | **xAI (Elon Musk)** | Grok | Real-time information access |
@@ -379,7 +379,9 @@ Akshay references the **AlphaGo documentary**, a pivotal moment in AI history th
 
 In Game 2 against Lee Sedol, AlphaGo played **Move 37**, a move that shocked Go masters around the world. No human player would have played it; commentators initially called it a mistake, but it turned out to be a stroke of creative genius that completely altered the trajectory of the game.
 
-![Move 37: Lee Sedol vs AlphaGo](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/17-alphago-move-37.jpg)
+[![Move 37: Lee Sedol vs AlphaGo](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/17-alphago-move-37.jpg)](https://www.youtube.com/watch?v=JNrXgpSEEIE)
+
+*Click the image above or visit the link directly: [Watch Move 37: Lee Sedol vs AlphaGo Match 2 on YouTube](https://www.youtube.com/watch?v=JNrXgpSEEIE)*
 
 ### Why It Matters
 - Proved that AI could handle **intuition-based** tasks, not just brute-force calculation.
@@ -388,7 +390,9 @@ In Game 2 against Lee Sedol, AlphaGo played **Move 37**, a move that shocked Go 
 
 ### Recommended Documentary: AlphaGo - The Movie
 
-![AlphaGo Documentary](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/18-alphago-documentary.jpg)
+[![AlphaGo Documentary](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/18-alphago-documentary.jpg)](https://www.youtube.com/watch?v=WXuK6gekU1Y)
+
+*Click the image above or visit the link directly: [Watch AlphaGo - The Movie (Full Documentary by Google DeepMind) on YouTube](https://www.youtube.com/watch?v=WXuK6gekU1Y)*
 
 > [!TIP]
 > Akshay highly recommends watching the **"AlphaGo - The Movie"** documentary (available on YouTube for free by Google DeepMind). It is an inspiring watch for anyone entering the AI field.
@@ -417,13 +421,17 @@ Akshay outlines the key trends and technologies that are shaping the future of A
 
 Akshay showcases real-world examples of AI-powered robotics to illustrate how far the technology has come.
 
-![Robotics: Chinese Spring Festival Search](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/20-robotics-chinese-spring-festival.jpg)
+[![Robotics: Chinese Spring Festival Search](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/20-robotics-chinese-spring-festival.jpg)](https://www.youtube.com/watch?v=mUmlv814aJo)
+
+*In the lecture, Akshay searches YouTube for `chinese summer fest robot dance` to find the martial arts humanoid performance.*
 
 ### Humanoid Martial Arts Performance
 
 At the **2026 Chinese Spring Festival Gala**, humanoid robots performed synchronized **martial arts and dance routines** on stage alongside human performers.
 
-![Martial Arts Robots at Spring Festival Gala](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/21-martial-arts-robots.jpg)
+[![Martial Arts Robots at Spring Festival Gala](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/21-martial-arts-robots.jpg)](https://www.youtube.com/watch?v=mUmlv814aJo)
+
+*Click the image above or visit the link directly: [Watch Martial arts robots dazzle at 2026 Spring Festival Gala on YouTube](https://www.youtube.com/watch?v=mUmlv814aJo)*
 
 ### Highlights
 - These robots demonstrated real-time balance, coordination, and movement planning, all powered by AI.
