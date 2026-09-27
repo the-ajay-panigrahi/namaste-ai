@@ -24,7 +24,8 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 
 | Episode | Title | Notes |
 | :---: | :--- | :---: |
-| 01 | Welcome to Namaste AI | [Read Notes](season-01-inside-the-mind-of-ai/episode-01/welcome-to-namaste-ai.md) |
+| 01 | Welcome to Namaste AI | [Read Notes](season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai.md) |
+| 02 | Evolution of AI | [Read Notes](season-01-inside-the-mind-of-ai/02-evolution-of-ai.md) |
 
 ---
 

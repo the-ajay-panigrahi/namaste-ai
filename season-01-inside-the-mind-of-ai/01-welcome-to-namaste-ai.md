@@ -12,7 +12,7 @@ The mission of Namaste AI is to help software engineers truly understand how art
 
 Instead of just using AI tools as black boxes or building superficial wrappers around chat interfaces, this course focuses on understanding core mechanisms from first principles and engineering robust AI-powered software systems.
 
-![Mission of this series](../../assets/season-01-inside-the-mind-of-ai/episode-01/01-mission-of-this-series.jpg)
+![Mission of this series](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/01-mission-of-this-series.jpg)
 
 ### Key Takeaways
 - Understand how AI models think and process information.
@@ -25,7 +25,7 @@ Instead of just using AI tools as black boxes or building superficial wrappers a
 
 Namaste AI provides a structured, comprehensive curriculum taking learners from core fundamentals to advanced agentic architectures and real-world projects.
 
-![Roadmap](../../assets/season-01-inside-the-mind-of-ai/episode-01/02-roadmap.jpg)
+![Roadmap](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/02-roadmap.jpg)
 
 ### Modules at a Glance
 
@@ -48,7 +48,7 @@ Namaste AI provides a structured, comprehensive curriculum taking learners from 
 
 The teaching approach follows the proven NamasteDev methodology that made *Namaste JavaScript* and *Namaste React* widely popular.
 
-![Course Philosophy](../../assets/season-01-inside-the-mind-of-ai/episode-01/03-course-philosophy.jpg)
+![Course Philosophy](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/03-course-philosophy.jpg)
 
 ### Core Teaching Principles
 - **First Principles Thinking**: Every concept is stripped down to its roots. Instead of memorizing syntax, you understand *why* things work the way they do.
@@ -62,7 +62,7 @@ The teaching approach follows the proven NamasteDev methodology that made *Namas
 
 Many developers hesitate to enter AI because they believe it requires advanced mathematical or research backgrounds. Akshay clarifies the exact prerequisites needed:
 
-![Prerequisites](../../assets/season-01-inside-the-mind-of-ai/episode-01/04-prerequisites.jpg)
+![Prerequisites](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/04-prerequisites.jpg)
 
 ### What You Need vs What You Do Not Need
 
@@ -81,7 +81,7 @@ Many developers hesitate to enter AI because they believe it requires advanced m
 
 Success in this course depends on active engagement rather than passive watching. Akshay outlines five core habits:
 
-![How to get the most out of this course](../../assets/season-01-inside-the-mind-of-ai/episode-01/05-how-to-get-the-most-out-of-this-course.jpg)
+![How to get the most out of this course](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/05-how-to-get-the-most-out-of-this-course.jpg)
 
 1. **Notes (MYON: Make Your Own Notes)**: Write your own notes in your own words. Whether digital or handwritten, the process of writing forces active processing and boosts retention.
 2. **Assignments**: Treat every assignment with priority. Real learning happens when you apply concepts without assistance.
@@ -95,9 +95,9 @@ Success in this course depends on active engagement rather than passive watching
 
 A concrete 12-step learning framework to follow throughout every episode:
 
-![How to learn from this course](../../assets/season-01-inside-the-mind-of-ai/episode-01/06-how-to-learn-from-this-course.jpg)
+![How to learn from this course](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/06-how-to-learn-from-this-course.jpg)
 
-- **0. Don't Binge Watch**: This is a hands-on technical course, not entertainment. Take it one concept at a time.
+- **0. Do Not Binge Watch**: This is a hands-on technical course, not entertainment. Take it one concept at a time.
 - **1. Code with Me**: Write code alongside the lesson rather than only observing.
 - **2. Pause Videos**: Pause frequently to test ideas, inspect outputs, and ponder.
 - **3. Make Notes**: Document key takeaways, diagrams, and explanations in your own words.
@@ -117,7 +117,7 @@ A concrete 12-step learning framework to follow throughout every episode:
 
 To succeed and get maximum value from Namaste AI, bring these three commitments:
 
-![What is needed from you](../../assets/season-01-inside-the-mind-of-ai/episode-01/07-what-is-needed-from-you.jpg)
+![What is needed from you](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/07-what-is-needed-from-you.jpg)
 
 - **Curiosity**: An insatiable drive to ask "why" and "how". Explore beneath the surface.
 - **Time**: Consistent hours dedicated to experimenting, building, and coding.
@@ -129,7 +129,7 @@ To succeed and get maximum value from Namaste AI, bring these three commitments:
 
 The concluding principle of the episode emphasizes intentional effort:
 
-![Time is the biggest currency](../../assets/season-01-inside-the-mind-of-ai/episode-01/08-time-is-the-biggest-currency.jpg)
+![Time is the biggest currency](../assets/season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai/08-time-is-the-biggest-currency.jpg)
 
 > *"Time is the biggest currency"*
 
@@ -139,8 +139,8 @@ Your time is your most valuable resource. When you invest focused time into lear
 
 ## Summary Checklist
 
-- [x] Understand the mission: Solve problems using AI from first principles.
-- [x] Familiarize with the roadmap: LLMs, Prompt Engineering, AI for SDEs, Tools, RAG, AI Agents, MCP, AI Engineering, and Projects.
-- [x] Verify prerequisites: Strong JS/Node/Git/API foundation; no advanced math or ML required.
-- [x] Set up your workflow: MYON (Make Your Own Notes), community engagement, and public sharing.
-- [x] Commit the three essentials: Curiosity, Time, and Undivided Attention.
+- Understand the mission: Solve problems using AI from first principles.
+- Familiarize with the roadmap: LLMs, Prompt Engineering, AI for SDEs, Tools, RAG, AI Agents, MCP, AI Engineering, and Projects.
+- Verify prerequisites: Strong JS/Node/Git/API foundation; no advanced math or ML required.
+- Set up your workflow: MYON (Make Your Own Notes), community engagement, and public sharing.
+- Commit the three essentials: Curiosity, Time, and Undivided Attention.
