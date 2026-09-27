@@ -12,7 +12,7 @@ Before understanding Artificial Intelligence, we must first understand what **in
 
 Intelligence is the ability to **acquire knowledge**, **process information**, **reason through problems**, and **adapt to new situations**. It is not limited to humans: animals, insects, and even plants demonstrate forms of intelligence.
 
-![What is Intelligence?](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/01-what-is-intelligence.jpg)
+![Evolution of AI Overview](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/01-evolution-of-ai-overview.jpg)
 
 ### Key Traits of Intelligence
 - **Learning**: Gaining new knowledge from experience or instruction.
@@ -25,8 +25,6 @@ Intelligence is the ability to **acquire knowledge**, **process information**, *
 ## 2. Types of Intelligence
 
 Intelligence is not a single, monolithic thing. It comes in different forms across different entities in nature.
-
-![Types of Intelligence](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/02-types-of-intelligence.jpg)
 
 ### Categories
 - **Human Intelligence (HI)**: The broadest form; includes language, abstract thinking, creativity, emotional reasoning, planning, and self-awareness.
@@ -42,7 +40,7 @@ Intelligence is not a single, monolithic thing. It comes in different forms acro
 
 **Artificial Intelligence (AI)** is the science of building machines or software systems that can perform tasks which typically require human intelligence.
 
-![What is Artificial Intelligence?](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/03-what-is-artificial-intelligence.jpg)
+![What is Artificial Intelligence?](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/02-what-is-artificial-intelligence.jpg)
 
 AI is a **broad umbrella term**. It covers everything from simple rule-based calculators to self-driving cars to ChatGPT. Any system that exhibits even basic forms of intelligence such as learning, reasoning, and decision-making falls under AI.
 
@@ -55,8 +53,6 @@ Many people think AI only means chatbots or Large Language Models. In reality, A
 
 This is the core of Episode 02. Akshay walks through the entire history of AI step by step, explaining how each era built on the limitations of the previous one.
 
-![Evolution of AI](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/04-evolution-of-ai.jpg)
-
 ### The Journey at a Glance
 
 ```
@@ -65,13 +61,25 @@ Rule-Based Systems → Machine Learning → Deep Learning → Transformers → L
 
 Each stage represents a fundamental shift in how machines learn and operate.
 
+![AI Timeline Summary Board](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/16-ai-timeline-summary.jpg)
+
+### Early Foundations: Turing Test and Dartmouth Conference (1950s)
+
+In 1950, **Alan Turing** published his landmark paper proposing the famous **Turing Test** to explore the fundamental question: *"Can machines think?"*
+
+In 1955-1956, **John McCarthy**, Marvin Minsky, Nathaniel Rochester, and Claude Shannon organized the Dartmouth Summer Research Project on Artificial Intelligence, formally coining the term **"Artificial Intelligence"** with the ambitious belief:
+
+> *"Every aspect of learning and intelligence could, in principle, be described precisely enough for a machine to simulate it."*
+
+![Early AI Foundations: Turing and McCarthy](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/03-early-ai-foundations-turing-mccarthy.jpg)
+
 ---
 
 ## 5. Rule-Based Systems (1950s-1980s)
 
 The earliest form of AI. These systems operated entirely on **manually written if-else rules** defined by human experts.
 
-![Rule-Based Systems](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/05-rule-based-systems.jpg)
+![Rule-Based AI](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/04-rule-based-ai.jpg)
 
 ### How They Worked
 - A human expert would define every possible scenario as a rule.
@@ -95,7 +103,7 @@ The earliest form of AI. These systems operated entirely on **manually written i
 
 The breakthrough idea: instead of telling machines **what to do**, let them **learn from data**.
 
-![Machine Learning](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/06-machine-learning.jpg)
+![Machine Learning](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/05-machine-learning.jpg)
 
 ### The Core Shift
 - **Rule-Based**: Human writes rules → Machine follows rules.
@@ -124,10 +132,14 @@ The breakthrough idea: instead of telling machines **what to do**, let them **le
 
 Deep Learning is a **subset of Machine Learning** that uses **neural networks** with multiple layers to automatically learn features from raw data.
 
-![Deep Learning](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/07-deep-learning.jpg)
+![Deep Learning](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/06-deep-learning.jpg)
 
 ### Why "Deep"?
 The word "deep" refers to the **depth** of the neural network, meaning the number of hidden layers between the input and output. More layers allow the network to learn increasingly **abstract and complex representations**.
+
+### Machine Learning vs Deep Learning
+
+![Machine Learning vs Deep Learning](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/07-machine-learning-vs-deep-learning.jpg)
 
 ### What Changed
 - **No more manual feature engineering**: The network automatically discovers relevant features.
@@ -139,8 +151,6 @@ The word "deep" refers to the **depth** of the neural network, meaning the numbe
 ## 8. Neural Network Structure
 
 A neural network is inspired by the human brain. It consists of layers of interconnected nodes (neurons) that process information.
-
-![Neural Network Structure](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/08-neural-network-structure.jpg)
 
 ### Architecture
 - **Input Layer**: Receives the raw data (pixels, words, numbers).
@@ -158,8 +168,6 @@ A neural network is inspired by the human brain. It consists of layers of interc
 
 When a neural network has **many hidden layers** (often dozens or hundreds), it is called a **Deep Neural Network (DNN)**.
 
-![Deep Neural Network](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/09-deep-neural-network.jpg)
-
 ### Why Depth Matters
 Each layer in a deep network learns a different level of abstraction:
 
@@ -169,10 +177,16 @@ Each layer in a deep network learns a different level of abstraction:
 | **Middle layers** | Textures, patterns, parts of objects |
 | **Deep layers** | Full objects, faces, scenes |
 
-### Breakthroughs Powered by Deep Learning
-- **Image Recognition**: CNNs (Convolutional Neural Networks) surpassed human accuracy on ImageNet (2015).
+### Breakthroughs Powered by Deep Learning: The Computer Vision Revolution
+
+In 2012, **AlexNet** won the ImageNet competition using a deep convolutional neural network, slashing error rates and triggering the modern deep learning boom.
+
+![Computer Vision Revolution: AlexNet](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/08-computer-vision-alexnet.jpg)
+
+### Key Breakthrough Areas
+- **Image Recognition**: CNNs (Convolutional Neural Networks) surpassed human accuracy on ImageNet (2015); enabled face unlock, self-driving perception, and automated medical imaging.
 - **Speech Recognition**: Siri, Google Assistant, Alexa.
-- **Natural Language Processing**: Sentiment analysis, translation, summarization.
+- **Natural Language Processing**: Early translation and sentiment classification.
 - **Game Playing**: AlphaGo defeating the world champion in Go (2016).
 
 ---
@@ -180,8 +194,6 @@ Each layer in a deep network learns a different level of abstraction:
 ## 10. The AI Winter
 
 Not everything was smooth progress. AI went through periods called **"AI Winters"**, times when funding dried up, hype collapsed, and progress stalled.
-
-![AI Winter](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/10-ai-winter.jpg)
 
 ### What Caused AI Winters?
 - **Overpromising and Underdelivering**: Early researchers promised human-level AI within decades. When that did not happen, governments and corporations pulled funding.
@@ -204,12 +216,16 @@ Not everything was smooth progress. AI went through periods called **"AI Winters
 
 The **Transformer architecture** is the single most important innovation in modern AI. It was introduced in the landmark paper **"Attention Is All You Need"** by Vaswani et al. at Google in 2017.
 
-![Transformers](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/11-transformers.jpg)
+### The Pre-Transformer Era: Natural Language Processing and RNNs
+
+Before Transformers, Natural Language Processing relied on methods like Bag of Words, n-grams, and sequential models like RNNs (Recurrent Neural Networks) and LSTMs (Long Short-Term Memory networks). These models processed text **one word at a time**, making them slow and unable to handle long-range dependencies effectively.
+
+![Natural Language Processing and RNNs](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/09-natural-language-processing-nlp.jpg)
 
 ### What Made Transformers Special?
-Before Transformers, sequential models like RNNs (Recurrent Neural Networks) and LSTMs (Long Short-Term Memory networks) processed text **one word at a time**, making them slow and unable to capture long-range dependencies effectively.
-
 Transformers introduced the **Self-Attention Mechanism**, which allows the model to look at **all words in a sentence simultaneously** and determine which words are most relevant to each other.
+
+![Transformers: Attention Is All You Need](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/10-transformers-attention-is-all-you-need.jpg)
 
 ### Key Advantages
 - **Parallelization**: Unlike RNNs, Transformers process all tokens at once, making training dramatically faster.
@@ -221,8 +237,6 @@ Transformers introduced the **Self-Attention Mechanism**, which allows the model
 ## 12. "Attention Is All You Need": The Paper
 
 This 2017 paper from Google is considered the **foundational paper of modern AI**. It introduced the Transformer architecture that powers every major AI model today.
-
-![Attention Is All You Need](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/12-attention-is-all-you-need.jpg)
 
 ### Why It Matters
 - Replaced RNNs and LSTMs as the dominant architecture for NLP.
@@ -238,7 +252,7 @@ This 2017 paper from Google is considered the **foundational paper of modern AI*
 
 A **Large Language Model** is a Transformer-based model trained on **massive amounts of text data** to understand and generate human language.
 
-![LLM Explained](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/13-llm-explained.jpg)
+![Large Language Models](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/11-large-language-models-llms.jpg)
 
 ### What Makes an LLM "Large"?
 - **Parameters**: LLMs have billions (sometimes trillions) of trainable parameters (weights). GPT-3 had 175 billion parameters. GPT-4 is estimated to have over a trillion.
@@ -250,19 +264,17 @@ A **Large Language Model** is a Transformer-based model trained on **massive amo
 2. Using its learned patterns, it **predicts the next most likely token** (word or subword).
 3. It generates text one token at a time, each prediction building on the previous output.
 
-### Key Capabilities
-- Text generation, summarization, and translation
-- Code generation and debugging
-- Reasoning and problem-solving
-- Conversational AI (chatbots)
+### Generative AI: From Analysis to Generation
+
+Earlier AI was primarily discriminatory: classifying, predicting numbers, or recommending products. Large Language Models enabled **Generative AI**, creating new text, code, audio, and multimodal artifacts.
+
+![Generative AI](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/12-generative-ai.jpg)
 
 ---
 
 ## 14. The GPT Journey
 
 **GPT (Generative Pre-trained Transformer)** is the model family by OpenAI that brought LLMs into the mainstream.
-
-![GPT Journey](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/14-gpt-journey.jpg)
 
 ### Evolution of GPT
 
@@ -275,13 +287,19 @@ A **Large Language Model** is a Transformer-based model trained on **massive amo
 | **GPT-4** | 2023 | ~1.7 Trillion (estimated) | Multimodal (text + images); significantly improved reasoning |
 | **GPT-4o** | 2024 | Undisclosed | Omni-model: native text, audio, and vision capabilities |
 
+### The Multimodal Shift: GPT-4o and Beyond
+
+Modern AI models are no longer confined to text alone. Multimodal AI models seamlessly understand and generate content across images, voice, video, code, and documents.
+
+![Multimodal AI](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/14-multimodal-ai.jpg)
+
 ---
 
 ## 15. The ChatGPT Moment
 
 **ChatGPT**, launched on November 30, 2022, became the **fastest-growing consumer application in history**, reaching 100 million users in just 2 months.
 
-![The ChatGPT Moment](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/15-chatgpt-moment.jpg)
+![The ChatGPT Moment](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/13-chatgpt-moment.jpg)
 
 ### Why Was It a Watershed Moment?
 - **Accessible to Everyone**: For the first time, a powerful AI model was available through a simple chat interface that anyone could use.
@@ -297,8 +315,6 @@ A **Large Language Model** is a Transformer-based model trained on **massive amo
 ## 16. Top AI Companies and the AI Race
 
 The launch of ChatGPT triggered an unprecedented race among technology companies to build and deploy LLMs.
-
-![Top AI Companies](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/16-top-ai-companies.jpg)
 
 ### Major Players
 
@@ -323,7 +339,9 @@ The launch of ChatGPT triggered an unprecedented race among technology companies
 
 An **AI Agent** is an LLM-powered system that can **autonomously plan, reason, use tools, and take actions** to accomplish complex tasks.
 
-![Agents](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/17-agents.jpg)
+Earlier AI could only answer questions in single-turn conversations. Today, modern AI systems can think, plan, call APIs, write code, search the web, and use tools to perform end-to-end work.
+
+![The AI Today: Tool Use and Capabilities](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/15-the-ai-today-capabilities.jpg)
 
 ### From Chatbots to Agents
 | Feature | Chatbot (LLM) | AI Agent |
@@ -352,17 +370,25 @@ An **AI Agent** is an LLM-powered system that can **autonomously plan, reason, u
 
 Akshay references the **AlphaGo documentary**, a pivotal moment in AI history that proved machines could master tasks previously thought to be uniquely human.
 
-![AlphaGo Documentary](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/18-alphago-documentary.jpg)
-
 ### The Story
 - **Go** is an ancient board game with more possible positions than atoms in the universe (~10^170 positions). It was considered the "holy grail" of AI game-playing.
 - In **March 2016**, **AlphaGo** (by Google DeepMind) defeated **Lee Sedol** (one of the greatest Go players of all time) 4-1 in a five-game match.
 - AlphaGo used a combination of **deep neural networks** and **reinforcement learning**. It learned by playing millions of games against itself.
 
+### The Legendary Move 37
+
+In Game 2 against Lee Sedol, AlphaGo played **Move 37**, a move that shocked Go masters around the world. No human player would have played it; commentators initially called it a mistake, but it turned out to be a stroke of creative genius that completely altered the trajectory of the game.
+
+![Move 37: Lee Sedol vs AlphaGo](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/17-alphago-move-37.jpg)
+
 ### Why It Matters
 - Proved that AI could handle **intuition-based** tasks, not just brute-force calculation.
 - Lee Sedol himself said AlphaGo made moves that no human would ever think of: creative, unconventional, and brilliant.
 - This event inspired a generation of AI researchers and engineers.
+
+### Recommended Documentary: AlphaGo - The Movie
+
+![AlphaGo Documentary](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/18-alphago-documentary.jpg)
 
 > [!TIP]
 > Akshay highly recommends watching the **"AlphaGo - The Movie"** documentary (available on YouTube for free by Google DeepMind). It is an inspiring watch for anyone entering the AI field.
@@ -391,12 +417,15 @@ Akshay outlines the key trends and technologies that are shaping the future of A
 
 Akshay showcases real-world examples of AI-powered robotics to illustrate how far the technology has come.
 
-![Robotics - Chinese Spring Festival](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/20-robotics-chinese-spring-festival.jpg)
+![Robotics: Chinese Spring Festival Search](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/20-robotics-chinese-spring-festival.jpg)
 
-![Martial Arts Robots at Spring Festival Gala 2026](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/21-martial-arts-robots.jpg)
+### Humanoid Martial Arts Performance
+
+At the **2026 Chinese Spring Festival Gala**, humanoid robots performed synchronized **martial arts and dance routines** on stage alongside human performers.
+
+![Martial Arts Robots at Spring Festival Gala](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/21-martial-arts-robots.jpg)
 
 ### Highlights
-- At the **2026 Chinese Spring Festival Gala**, humanoid robots performed synchronized **martial arts and dance routines** on stage alongside human performers.
 - These robots demonstrated real-time balance, coordination, and movement planning, all powered by AI.
 - This is a glimpse of **embodied AI**, intelligence that exists not just in software but in physical machines that interact with the real world.
 
