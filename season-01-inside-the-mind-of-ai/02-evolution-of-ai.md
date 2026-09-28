@@ -122,42 +122,15 @@ The breakthrough idea: instead of telling machines **what to do**, let them **le
 
 ### Types of Machine Learning
 
-Machine Learning is divided into three primary paradigms based on how the algorithm receives data and feedback:
-
-| Type | Core Concept | Feedback / Signal | Key Real-World Examples |
-| :--- | :--- | :--- | :--- |
-| **Supervised Learning** | Learns from labeled data (input and correct target answer provided) | Direct supervision with ground truth labels | Spam detection, house price prediction, medical diagnosis |
-| **Unsupervised Learning** | Discovers hidden patterns and natural clusters in unlabeled data | No direct supervision or correct answers provided | Customer segmentation, movie recommendation clusters, fraud anomaly detection |
-| **Reinforcement Learning** | Learns optimal actions through trial and error in an environment | Dynamic rewards for positive outcomes and penalties for mistakes | Game-playing AI (AlphaGo, Mario), robotics locomotion, self-driving navigation |
-
-#### 1. Supervised Learning (Learning with a Teacher)
-- **Concept**: The algorithm receives pairs of inputs and corresponding correct answers (labels). The goal is to learn a mathematical mapping from input to output so it can accurately predict the correct answer for new, unseen data.
-- **Example 1: Email Spam Detection**: Human reviewers label thousands of emails as either "Spam" or "Not Spam". The algorithm learns which words and sender patterns correlate with spam.
-- **Example 2: House Price Prediction**: Input features include square footage, number of bedrooms, and location. The target label is the actual sale price. The model learns to predict selling prices for newly listed houses.
-- **Example 3: Medical Diagnosis**: Inputs include patient lab test values. The target label is "Positive" or "Negative" for a specific condition, allowing the model to assist doctors in screening patients.
-
-#### 2. Unsupervised Learning (Learning without a Teacher)
-- **Concept**: The algorithm receives raw data without labels or predefined answers. It explores the data independently to identify underlying structures, similarities, and natural groupings.
-- **Example 1: E-Commerce Customer Segmentation**: An online store feeds customer purchase histories without any predefined groups. The model discovers natural clusters: bargain hunters, electronics enthusiasts, and seasonal shoppers.
-- **Example 2: Recommendation System Clustering**: A streaming platform analyzes viewing habits without explicit labels, discovering that users who watch specific sci-fi shows also enjoy distinct subgenres of mystery thrillers.
-- **Example 3: Banking Anomaly Detection**: The model observes thousands of normal card transactions to establish a baseline of regular behavior. Any transaction that deviates significantly from the normal pattern is flagged for review.
-
-#### 3. Reinforcement Learning (Learning through Trial and Error)
-- **Concept**: Reinforcement Learning is an independent third paradigm of Machine Learning, not a subtype of unsupervised learning. An agent interacts with a dynamic environment, makes decisions, and receives numerical rewards for success or penalties for mistakes. Over millions of iterations, the agent learns the best sequence of actions (policy) to maximize cumulative rewards.
-- **Why It Is Distinct from Unsupervised Learning**: Unsupervised learning finds passive patterns in static data without feedback. Reinforcement learning takes active actions in a dynamic environment and learns from the direct consequences (rewards and penalties) of those actions.
-- **Example 1: Video Game AI (Super Mario)**: An AI agent presses controller buttons. Moving forward and collecting coins yields positive points (rewards), whereas colliding with an enemy or falling into a pit causes a game over (penalties). Through repeated trial and error, the agent masters the level.
-- **Example 2: Robotics and Balance**: A bipedal robot attempts to walk. Moving forward while maintaining balance yields a positive reward, while falling over incurs a penalty. The robot adjusts motor angles until it walks smoothly.
-- **Example 3: Board Games (AlphaGo and Chess)**: An AI plays millions of matches against itself. Winning a match gives a reward (+1) and losing gives a penalty (-1). Through continuous self-play, the system discovers novel winning strategies.
+- **Supervised Learning**: Learns from labeled data where both inputs and correct answers are provided (e.g. email spam classification, house price prediction).
+- **Unsupervised Learning**: Discovers hidden patterns and natural groupings in unlabeled data without predefined answers (e.g. customer segmentation, anomaly detection).
+- **Reinforcement Learning**: Learns optimal actions through trial and error using environmental rewards and penalties (e.g. game playing AI like AlphaGo, robotics balance).
 
 ### Limitations of Classical Machine Learning
-While machine learning was a massive leap beyond hardcoded if-else rules, classical machine learning hit three major roadblocks that paved the way for Deep Learning:
 
-1. **The Feature Engineering Bottleneck (Human Dependency)**:
-   - In classical machine learning, computers could not process complex raw data on their own. Human domain experts had to manually choose, measure, and calculate which specific features mattered (such as edge sharpness, pixel ratios, or color histograms). If human engineers selected poor features, the machine learning model failed.
-2. **Struggle with Unstructured Data**:
-   - Classical machine learning excelled at structured tabular data (rows and columns of numbers and text inside spreadsheets). However, it struggled with high-dimensional unstructured data like raw images, audio speech waveforms, video, and freeform text.
-3. **The Performance Plateau**:
-   - For traditional algorithms, feeding ten times more data did not make the model ten times smarter. Beyond a certain threshold, model accuracy hit a ceiling and leveled off, unable to take advantage of the explosion of big data.
+- **Feature Engineering**: Requires humans to manually select and craft relevant features from raw data.
+- **Unstructured Data**: Struggles to process complex inputs like raw images, audio speech, and natural text.
+- **Performance Plateau**: Accuracy levels off and stops improving beyond a certain volume of data.
 
 ---
 
