@@ -73,7 +73,7 @@ Each stage represents a fundamental shift in how machines learn and operate.
 - **2010s (Deep Learning Revolution)**: Deep neural networks modeled after biological neurons automated feature extraction directly from raw data, powered by the rise of modern GPUs and internet-scale datasets. Computer Vision exploded with deep convolutional networks.
 - **Language Processing Evolution**: Text proved challenging. Bag of Words ignored word order, N-grams only looked at adjacent words, while sequential models like RNNs and LSTMs struggled to maintain long-range context and pronoun references.
 - **2017 (The Transformer Breakthrough)**: The landmark "Attention Is All You Need" paper introduced self-attention, processing all tokens in parallel and connecting distant context effortlessly.
-- **2020-2022 (LLMs to ChatGPT)**: Scaling Transformers on massive web corpora produced Large Language Models. In November 2022, OpenAI launched ChatGPT, making AI accessible to the world and igniting the global AI race across Google, Anthropic, Meta, and xAI.
+- **2020-2022 (LLMs to ChatGPT)**: Scaling Transformers on massive web text datasets produced Large Language Models. In November 2022, OpenAI launched ChatGPT, making AI accessible to the world and igniting the global AI race across Google, Anthropic, Meta, and xAI.
 - **Today and Beyond (Generative AI to Agents)**: AI shifted from predicting outcomes to generating multimodal content (text, audio, images, video). The frontier has now moved to autonomous AI Agents that can reason, plan, and execute multi-step tools independently.
 
 ### Early Foundations: Turing Test, Dartmouth Conference, and Deep Blue
@@ -274,7 +274,7 @@ A **Large Language Model** is a Transformer-based model trained on **massive amo
 
 ### What Makes an LLM "Large"?
 - **Parameters**: LLMs have billions (sometimes trillions) of trainable parameters (weights). GPT-3 had 175 billion parameters. GPT-4 is estimated to have over a trillion.
-- **Training Data**: Trained on vast corpora of text, including books, websites, code, scientific papers, and conversations.
+- **Training Data**: Trained on massive datasets of text, including books, websites, code, scientific papers, and conversations.
 - **Compute**: Training an LLM requires thousands of GPUs running for weeks or months.
 
 ### How LLMs Work (Simplified)
