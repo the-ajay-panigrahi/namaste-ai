@@ -66,7 +66,9 @@ Each stage represents a fundamental shift in how machines learn and operate.
 
 ### Early Foundations: Turing Test, Dartmouth Conference, and Deep Blue
 
-- **1950**: **Alan Turing** published his landmark paper proposing the famous **Turing Test** to explore the fundamental question: *"Can machines think?"*
+- **1950**: **Alan Turing** published his landmark paper proposing the famous **Turing Test** (originally called the **Imitation Game**) to explore the fundamental question: *"Can machines think?"*
+  - **Setup**: A **human judge** sits in a separate room and communicates via text with two hidden entities: a **human** (Room A) and a **machine** (Room B).
+  - **Passing Criteria**: If the human judge cannot reliably tell which entity is the human and which is the machine based on their responses, the machine passes the test.
 - **1956**: **John McCarthy**, Marvin Minsky, Nathaniel Rochester, and Claude Shannon organized the Dartmouth Summer Research Project on Artificial Intelligence, formally coining the term **"Artificial Intelligence"** with the ambitious belief:
   > *"Every aspect of learning and intelligence could, in principle, be described precisely enough for a machine to simulate it."*
 - **1986**: Emergence of **Synthetic Intelligence**: Researchers introduced this concept to emphasize true, synthesized machine cognition and independent reasoning rather than superficial simulation or imitation of human behavior.
