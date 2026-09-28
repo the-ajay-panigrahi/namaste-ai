@@ -69,8 +69,11 @@ Each stage represents a fundamental shift in how machines learn and operate.
 - **1950**: **Alan Turing** published his landmark paper proposing the famous **Turing Test** (originally called the **Imitation Game**) to explore the fundamental question: *"Can machines think?"*
   - **Setup**: A **human judge** sits in a separate room and communicates via text with two hidden entities: a **human** (Room A) and a **machine** (Room B).
   - **Passing Criteria**: If the human judge cannot reliably tell which entity is the human and which is the machine based on their responses, the machine passes the test.
-- **1956**: **John McCarthy**, Marvin Minsky, Nathaniel Rochester, and Claude Shannon organized the Dartmouth Summer Research Project on Artificial Intelligence, formally coining the term **"Artificial Intelligence"** with the ambitious belief:
-  > *"Every aspect of learning and intelligence could, in principle, be described precisely enough for a machine to simulate it."*
+- **1955-1956**: **John McCarthy** coined the term **"Artificial Intelligence"** and drafted the seminal Dartmouth workshop proposal with co-organizers Marvin Minsky, Nathaniel Rochester, and Claude Shannon.
+  - **Why John McCarthy is the primary figure**: McCarthy originated the term to distinguish this new field of computational logic from existing disciplines like cybernetics and automata theory. His fellow co-organizers supported the proposal and helped organize the historic 1956 Dartmouth Summer Research Project on Artificial Intelligence, cementing Dartmouth as the official birthplace of the field.
+  - **Founding Belief**:
+    > *"Every aspect of learning and intelligence could, in principle, be described precisely enough for a machine to simulate it."*
+  - **In Simple Words**: Human thinking, reasoning, and learning are not mystical or impossible to understand. If any intellectual process or learning behavior can be broken down into clear, precise logical steps, a computer can be programmed to simulate and execute it. This core principle inspired the earliest rule-based AI systems and laid the conceptual foundation for modern machine learning.
 - **1986**: Emergence of **Synthetic Intelligence**: Researchers introduced this concept to emphasize true, synthesized machine cognition and independent reasoning rather than superficial simulation or imitation of human behavior.
 - **1997**: **IBM Deep Blue defeated Garry Kasparov**, the reigning world chess champion. This historic moment sparked global debate: *Have machines become smarter than humans?* Deep Blue demonstrated the pinnacle of complex heuristic evaluation and tree search in classical AI.
 
@@ -473,6 +476,8 @@ The episode concludes with Akshay revisiting the **five pillars** of what Namast
 ## Summary Checklist
 
 - Understand what intelligence is and its different types (human, animal, artificial, and synthetic).
+- Know the early AI foundations: Turing Test (1950), John McCarthy coining Artificial Intelligence at Dartmouth (1955-1956), and the Deep Blue chess milestone (1997).
+- Understand the founding conjecture of AI: that every aspect of learning and intelligence can be described precisely enough for a machine to simulate it.
 - Know the complete evolution timeline: Rule-Based → ML → Deep Learning → Transformers → LLMs → Agents.
 - Understand why rule-based systems failed and how machine learning solved it.
 - Know what neural networks and deep neural networks are and why depth matters.
