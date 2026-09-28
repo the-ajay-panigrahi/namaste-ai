@@ -64,6 +64,18 @@ Each stage represents a fundamental shift in how machines learn and operate.
 
 ![AI Timeline Summary Board](../assets/season-01-inside-the-mind-of-ai/02-evolution-of-ai/16-ai-timeline-summary.jpg)
 
+### TL;DR: Evolution of AI in a Nutshell
+
+- **1950s (Foundations)**: Alan Turing proposed the Turing Test around the question "Can machines think?", and John McCarthy coined the term Artificial Intelligence at Dartmouth (1955-1956).
+- **1950s-1980s (Rule-Based Systems)**: Systems ran on explicit human-written if-else logic. They could not adapt or scale, leading to the AI Winters when overpromised capabilities fell short.
+- **1990s (Search vs Learning)**: Deep Blue defeated Garry Kasparov in 1997 using heuristic tree search rather than learning. Meanwhile, Machine Learning emerged: instead of hard-coding rules, machines learned patterns from data via Supervised (labeled), Unsupervised (unlabeled), and Reinforcement Learning (trial and reward).
+- **Machine Learning Bottleneck**: Classical Machine Learning required tedious manual feature engineering and hit a performance plateau on unstructured data like images and audio.
+- **2010s (Deep Learning Revolution)**: Deep neural networks modeled after biological neurons automated feature extraction directly from raw data, powered by the rise of modern GPUs and internet-scale datasets. Computer Vision exploded with deep convolutional networks.
+- **Language Processing Evolution**: Text proved challenging. Bag of Words ignored word order, N-grams only looked at adjacent words, while sequential models like RNNs and LSTMs struggled to maintain long-range context and pronoun references.
+- **2017 (The Transformer Breakthrough)**: The landmark "Attention Is All You Need" paper introduced self-attention, processing all tokens in parallel and connecting distant context effortlessly.
+- **2020-2022 (LLMs to ChatGPT)**: Scaling Transformers on massive web corpora produced Large Language Models. In November 2022, OpenAI launched ChatGPT, making AI accessible to the world and igniting the global AI race across Google, Anthropic, Meta, and xAI.
+- **Today and Beyond (Generative AI to Agents)**: AI shifted from predicting outcomes to generating multimodal content (text, audio, images, video). The frontier has now moved to autonomous AI Agents that can reason, plan, and execute multi-step tools independently.
+
 ### Early Foundations: Turing Test, Dartmouth Conference, and Deep Blue
 
 - **1950**: **Alan Turing** published his landmark paper proposing the famous **Turing Test** (originally called the **Imitation Game**) to explore the fundamental question: *"Can machines think?"*
