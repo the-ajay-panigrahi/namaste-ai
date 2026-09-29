@@ -356,7 +356,7 @@ Because the raw base model lacks external tools and live internet access, it cor
 
 ## 13. Tool Augmentation in Action: Web Search vs Grounded Refusal
 
-### 1. Answering with Live Web Search
+### 1. Web Search Hallucination: Synthesizing False Information
 When the exact same question is given to ChatGPT with web browsing tools enabled:
 
 ```text
@@ -365,9 +365,10 @@ Prompt: What is the price of Namaste Data Science course?
 
 ![ChatGPT Web Search Course Price](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/26-chatgpt-web-search-course-price.jpg)
 
-- ChatGPT recognizes that it lacks internal real-time data.
-- It triggers its **Web Search** tool, queries the live internet across relevant sites, and retrieves current data directly from `namastedev.com`.
-- It returns the verified price (`Investment: AED 599`) along with direct clickable source citations.
+- **Fictional Course Premise**: The user asks for a course that does not actually exist (NamasteDev offers Namaste JavaScript, Namaste React, and Namaste AI, but no Namaste Data Science course).
+- **Web Search Triggered**: ChatGPT recognizes it lacks internal real-time data and queries the live web.
+- **Fabricated Web Match**: Instead of recognizing that no such official course exists, ChatGPT retrieves an unrelated third-party listing from `Alumnx` citing `Investment: AED 599`.
+- **Key Takeaway**: Tools reduce hallucinations but do not make models immune to errors. When a search query matches irrelevant or low-quality web text, the model can still confidently synthesize false information.
 
 ### 2. Grounded Refusal for Unknown Entities
 What happens when a user asks about an unknown private individual?
