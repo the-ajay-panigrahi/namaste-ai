@@ -303,34 +303,27 @@ Hallucinations manifest in distinct patterns across different tasks.
 
 ## 11. False Precision: The Dot Counting Test
 
-To demonstrate **False Precision** and prove why raw models fail at deterministic counting, Akshay presents the dot counting test.
+To demonstrate **False Precision** and prove why raw models fail at deterministic counting, Akshay presents the dot counting test using a string with an actual ground truth of **108 dots**:
 
-### The Experiment
-Ask both the Playground base model and ChatGPT to count the exact number of consecutive dots:
 ```text
 Prompt: Can you count the dots in the string - "..................................................."
 ```
 
-### Inconsistent Results Across Runs
-- **Playground First Run**: Claims exactly 100 dots.
-- **Playground Second Run**: Claims exactly 110 dots.
-- **ChatGPT First Run**: Claims exactly 108 dots.
-- **ChatGPT Second Run**: Claims exactly 118 dots.
+### The Experiment and Results
+- **Ground Truth**: The input string contains exactly 108 dots.
+- **Playground (Raw Base Model)**: Hallucinates with false precision, claiming exactly 100 dots. When 10 more dots are added (making 118 dots), it anchors to its previous guess and outputs 110 dots, completely missing the true character count.
+- **ChatGPT (Tool Augmented Assistant)**: Correctly identifies 108 dots, and when 10 more dots are added, correctly reports 118 dots by using automated code execution in the background.
 
-![Playground False Precision Counting Dots 100](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/20-playground-false-precision-counting-dots-100.jpg)
+![OpenAI Playground False Precision Counting Dots](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/20-playground-false-precision-counting-dots-100.jpg)
 
-![Playground False Precision Counting Dots 110](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/22-playground-false-precision-counting-dots-110.jpg)
-
-![ChatGPT Guessing Dots 108](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/19-chatgpt-tool-augmented-counting-dots.jpg)
-
-![ChatGPT Guessing Dots 118](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/21-online-character-counter-ground-truth.jpg)
+![ChatGPT Accurate Tool Counting Dots](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/21-online-character-counter-ground-truth.jpg)
 
 ### Why Large Language Models Cannot Count
-1. **Tokenization**: Large language models do not see individual characters. Text is converted into token chunks. Sequences of dots are grouped into arbitrary multi-character tokens.
-2. **No Iterative Loops**: An autoregressive model executes a single forward pass per token. It possesses no internal loop counter, index variable, or character accumulator.
-3. **Plausible Guessing**: The model outputs a plausible-sounding round number with total linguistic conviction.
+- **Tokenization**: Large language models do not see individual characters. Text is converted into token chunks, grouping long dot sequences into arbitrary multi-character tokens.
+- **No Iterative Loops**: An autoregressive model executes a single forward pass per token. It possesses no internal loop counter, index variable, or character accumulator.
+- **Plausible Guessing**: The model outputs a plausible-sounding round number with total linguistic conviction instead of computing.
 
-To count accurately, the model must be augmented with deterministic code execution tools (such as Python).
+To count accurately, models must be augmented with deterministic code execution tools such as Python.
 
 ---
 
