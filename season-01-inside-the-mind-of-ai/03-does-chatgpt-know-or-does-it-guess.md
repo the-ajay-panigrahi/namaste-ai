@@ -231,6 +231,7 @@ To understand how AI systems operate, we must separate the lifecycle into two di
 ### Core Meaning in Simple Words
 - **Training (Learning Phase)**: Teaching the model by feeding massive datasets, calculating errors, and adjusting the parameters (weights).
 - **Inference (Execution Phase)**: Using the already trained, frozen model to process a user prompt and generate the final output result (`Prompt → Model → Inference → Result`).
+- **Terminology Note**: Training the model and training the neural network are used interchangeably because an LLM model is fundamentally a deep neural network.
 
 ### 1. Training Phase (Going to School)
 - **What Happens**: The model ingests massive datasets. As it predicts tokens, errors are calculated via loss functions, and backpropagation adjusts the neural weights.
