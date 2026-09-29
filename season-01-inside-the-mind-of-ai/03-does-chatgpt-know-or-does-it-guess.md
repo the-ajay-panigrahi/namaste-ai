@@ -228,6 +228,10 @@ To understand how AI systems operate, we must separate the lifecycle into two di
 
 ![Training vs Inference Architecture](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/15-training-vs-inference-architecture.jpg)
 
+### Core Meaning in Simple Words
+- **Training (Learning Phase)**: Teaching the model by feeding massive datasets, calculating errors, and adjusting the parameters (weights).
+- **Inference (Execution Phase)**: Using the already trained, frozen model to process a user prompt and generate the final output result (`Prompt → Model → Inference → Result`).
+
 ### 1. Training Phase (Going to School)
 - **What Happens**: The model ingests massive datasets. As it predicts tokens, errors are calculated via loss functions, and backpropagation adjusts the neural weights.
 - **Compute Requirements**: Massive. Thousands of high-end GPUs running for months, costing millions of dollars.
