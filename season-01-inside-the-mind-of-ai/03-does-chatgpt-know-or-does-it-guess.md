@@ -66,7 +66,7 @@ Search engines and Large Language Models operate on two entirely opposite paradi
 
 To appreciate how LLMs differ, we must first understand the three-step architecture that powers search engines.
 
-![Search Engine Architecture Indexing](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/04-search-engine-architecture-indexing.jpg)
+![How Search Engines Find Information Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/04-search-engine-architecture-indexing.jpg)
 
 ### 1. Web Crawling
 - Automated bot programs, often called spiders or crawlers (such as Googlebot), traverse the public internet 24/7.
@@ -81,8 +81,6 @@ To appreciate how LLMs differ, we must first understand the three-step architect
 ### 3. Ranking
 When a user submits a search query, thousands of matching web pages are evaluated and sorted within milliseconds.
 
-![Search Engine Ranking PageRank](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/05-search-engine-architecture-ranking-pagerank.jpg)
-
 Ranking algorithms use more than 200 criteria to determine the order of results:
 - **Domain Authority and Trust**: Reputation of the website.
 - **PageRank and Backlinks**: The number and quality of other reputable websites linking to the page.
@@ -91,11 +89,9 @@ Ranking algorithms use more than 200 criteria to determine the order of results:
 - **Technical Performance**: Page loading speed, mobile friendliness, and secure HTTPS protocol.
 - **Freshness**: Publication and update timestamps.
 
-![Search Engine Ranking Criteria](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/06-search-engine-ranking-criteria-quality.jpg)
-
 ### Pros and Flaws of Search Engines
 
-![Search Engine Pros and Flaws](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/07-search-engine-pros-and-flaws.jpg)
+![Pros and Flaws of Search Engines Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/05-search-engine-architecture-ranking-pagerank.jpg)
 
 - **Benefits**:
   - Direct trail back to the primary source of truth.
@@ -114,7 +110,7 @@ Large Language Models do not search an internal database of documents. They do n
 
 Instead, LLMs generate responses through **Next-Token Prediction**.
 
-![Autocomplete Next Word Prediction](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/08-autocomplete-next-word-prediction.jpg)
+![How LLMs Generate Responses and Predict Next Words Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/06-search-engine-ranking-criteria-quality.jpg)
 
 ### Classic Examples
 Consider these familiar sentences:
@@ -123,11 +119,11 @@ Consider these familiar sentences:
 
 The model reads the input prompt, calculates the probability distribution across all possible tokens in its vocabulary, and selects the next token.
 
-![Token Probability Distribution](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/09-token-probability-distribution.jpg)
-
 In the OpenAI Playground demo:
 - When prompted with *"The sun rises in"*, the model outputs *"the east"* because across billions of training sentences, *"east"* overwhelmingly follows that sequence.
 - Each generated token is appended to the prompt, and the updated sequence is fed back into the model to predict the subsequent token. This autoregressive loop repeats until a stopping condition is met.
+
+![Playground Demo Predicting Next Token The Sun Rises In](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/07-search-engine-pros-and-flaws.jpg)
 
 ---
 
@@ -137,12 +133,12 @@ If an LLM merely predicts the next word, does that mean it is just randomly gues
 
 **No. It is far more sophisticated.**
 
-![Neural Network Weights and Parameters](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/10-neural-network-weights-and-parameters.jpg)
+![Is ChatGPT Just Autocomplete Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/08-autocomplete-next-word-prediction.jpg)
 
 ### What Knowledge Does an LLM Contain?
 An LLM stores knowledge inside the **parameters (weights)** of its deep neural network.
 
-![Internet Scale Pretraining Corpus](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/11-internet-scale-pretraining-corpus.jpg)
+![What Knowledge Does an LLM Contain Parameters and Weights Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/09-token-probability-distribution.jpg)
 
 During training across hundreds of billions of words from books, research papers, websites, code repositories, and articles:
 - The network adjusts billions or trillions of numerical weights.
@@ -162,7 +158,7 @@ Therefore, when an LLM predicts the next token, it is not flipping a coin. It ev
 
 A fundamental property of Large Language Models is the **Knowledge Cutoff**.
 
-![Knowledge Cutoff Date Frozen Weights](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/12-knowledge-cutoff-date-frozen-weights.jpg)
+![Knowledge Cutoff in Large Language Models Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/10-neural-network-weights-and-parameters.jpg)
 
 ### Why Cutoffs Exist
 1. Training a frontier model takes months of continuous compute on thousands of specialized GPUs.
@@ -176,13 +172,15 @@ Akshay demonstrates this in the Playground using an ungrounded model:
 Prompt: who is the delih CM roight now
 ```
 
+![Playground Demo Delhi Chief Minister Knowledge Cutoff](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/11-internet-scale-pretraining-corpus.jpg)
+
 Notice two critical insights from the response:
 1. **Semantic Understanding**: Despite deliberate spelling errors (*delih*, *roight*), the model perfectly understands the user intent. It does not require exact keyword matching.
 2. **Temporal Limitation**: The model responds that Arvind Kejriwal is the Chief Minister of Delhi, noting that its knowledge cutoff is September 2021.
 
-![ChatGPT Live Search Current Facts](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/13-chatgpt-live-search-current-facts.jpg)
-
 In the real world, leadership changes over time (for example, Rekha Gupta assumed the office of Delhi Chief Minister in February 2025). The frozen model cannot know this fact on its own because the event occurred after its training period.
+
+![Wikipedia Record for Delhi Chief Minister Rekha Gupta](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/12-knowledge-cutoff-date-frozen-weights.jpg)
 
 Without external retrieval tools, any model asked about events beyond its cutoff will either decline or hallucinate.
 
@@ -192,11 +190,13 @@ Without external retrieval tools, any model asked about events beyond its cutoff
 
 A critical distinction every engineer must understand is the difference between a **Base Model** and an **AI Assistant**.
 
-![Base Models vs AI Assistants](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/14-base-models-vs-ai-assistants.jpg)
+![Base Model Concept and Characteristics Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/13-chatgpt-live-search-current-facts.jpg)
 
 ### The Automobile Analogy
 - The **Base Model** is like a **raw car engine**: powerful, capable of generating massive horsepower, but you cannot sit in it or drive it safely on the road.
 - The **AI Assistant (ChatGPT, Claude, Gemini)** is the **complete consumer car**: it takes that engine and adds a chassis, steering wheel, brakes, dashboard, seatbelts, navigation system, and safety airbags.
+
+![AI Assistant Architecture and Automobile Analogy Whiteboard](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/14-base-models-vs-ai-assistants.jpg)
 
 ### Component Comparison
 
