@@ -264,11 +264,14 @@ A **hallucination** occurs when an AI model generates an answer that is grammati
 
 ![Root Causes of Hallucinations](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/17-root-causes-of-hallucinations.jpg)
 
-LLMs do not intentionally lie. Hallucinations stem from the core architecture of token prediction:
-1. **Objective Mismatch**: Models are trained to produce plausible, coherent text continuations, not to verify philosophical or empirical truth.
-2. **Information Gaps**: When a model encounters concepts with sparse representation in its training weights, it bridges the gap by blending related patterns.
-3. **Leading or False Prompts**: If a prompt contains an untrue premise (such as asking why an imaginary wine is expensive), the model accepts the premise and generates patterns associated with expensive wines.
-4. **Compression Loss**: Training billions of parameters compresses petabytes of internet text. Specific details (names, dates, counts) degrade during lossy compression.
+LLMs do not intentionally lie. A model has no consciousness, no intent to deceive, and no concept of truth. Hallucinations happen because of how next-token prediction works:
+- **Probabilistic Generation**: The model calculates the next most likely token mathematically, not whether a statement is factually true.
+- **Optimized to Answer**: Assistant training rewards the model for being helpful and answering, so it prefers generating a response over saying nothing.
+- **Insufficient Information**: When training data has sparse or missing information about a topic, the model fills gaps by blending related patterns.
+- **Ambiguous Information**: When a question lacks clear context, the model makes statistical guesses to complete the response.
+- **Outdated Knowledge**: A model only knows data up to its training cutoff date, leading to incorrect statements about recent events.
+- **False Assumptions**: If a prompt contains an incorrect premise, the model accepts that premise as true and builds an answer around it.
+- **Unreliable Patterns**: Conflicting, biased, or noisy data in training text causes the model to reproduce inaccurate associations.
 
 ---
 
