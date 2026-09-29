@@ -432,16 +432,16 @@ One of the central lessons of this episode is understanding the **Confidence Ill
 
 ## 16. Retrieval-Augmented Generation (RAG)
 
-Combining web search with a Large Language Model yields the fundamental architecture of modern grounded AI: **Retrieval-Augmented Generation (RAG)**.
+Combining external retrieval with a Large Language Model yields the fundamental architecture of modern grounded AI: **Retrieval-Augmented Generation (RAG)**.
 
 ![Web Search Plus LLM RAG Equation](../assets/season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess/30-web-search-plus-llm-rag-equation.jpg)
 
 ### The RAG Formula
 ```text
-Web Search (Retrieval)  +  LLMs (Generation)  =  RAG (Retrieval-Augmented Generation)
+Retrieval (External Evidence)  +  Generation (LLM)  =  RAG (Retrieval-Augmented Generation)
 ```
-- **Retrieval**: Gathers external evidence from web indexes, vector databases, or private documentation.
-- **Generation**: Converts the retrieved raw evidence into a concise, fluent, and actionable response.
+- **Retrieval**: Gathers external evidence and factual context from private documents, internal databases, knowledge bases, or live web search.
+- **Generation**: Converts that retrieved context into a concise, fluent, and actionable response using the language model.
 
 > **Important Note from Akshay**: Tools do not completely eliminate errors. If the retrieved source document contains inaccurate information, or if the model misinterprets the context window, the resulting generation can still be flawed.
 
@@ -536,7 +536,7 @@ When used with tools, verified against sources, and guided by clear prompts, it 
 - Models say "I do not know" due to assistant training, system prompts, weak patterns, safety rules, missing tools, or prompt phrasing.
 - External tools (Web Search, Code Execution, Calculators, Databases) provide superpowers that bridge LLMs to real-time external data.
 - The Confidence Illusion occurs because models speak authoritatively regardless of accuracy; combat it by separating facts from assumptions, asking for uncertainty, requesting sources, and using web search.
-- RAG (Retrieval + Generation) combines search evidence with natural language synthesis, as demonstrated by Google AI Overviews.
+- RAG (Retrieval + Generation) combines external evidence (from documents, databases, or live search) with natural language synthesis to ground answers in verified facts.
 - Tools reduce hallucinations but do not completely eliminate errors.
 - Models exhibit zero self-awareness; answers about identity originate from pretraining data, context, system instructions, and tools.
 - The four information paradigms are Search Engines, Base Models, Chat Assistants, and LLMs with Private Information.
