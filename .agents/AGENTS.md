@@ -10,4 +10,5 @@
   - **No Summary Checklist**: Never write a summary checklist at the end of notes or episodes.
   - **First Principles Foundation**: Begin notes from first principles, clearly establishing why a technology is needed and explaining core meanings concisely.
 - **Automatic Git Commits**: Automatically commit changes once a major portion of episode notes is complete or when meaningful milestones are reached, using clear and descriptive conventional commit messages.
+- **Image Sizing**: Format all Markdown images using HTML `<img>` tags with a fixed width of 600 (`<img src="..." alt="..." width="600" />`) instead of standard Markdown image syntax (`![]()`), ensuring consistent display sizes across previewers.
 - **Rule Maintenance**: Automatically and proactively update `AGENTS.md` with new rules or preferences whenever established, without requiring an explicit reminder.
