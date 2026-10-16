@@ -134,13 +134,3 @@ The concluding principle of the episode emphasizes intentional effort:
 > *"Time is the biggest currency"*
 
 Your time is your most valuable resource. When you invest focused time into learning fundamental concepts, doing assignments, and building real projects, you will develop rare, high-value skills and become an outstanding AI engineer.
-
----
-
-## Summary Checklist
-
-- Understand the mission: Solve problems using AI from first principles.
-- Familiarize with the roadmap: LLMs, Prompt Engineering, AI for SDEs, Tools, RAG, AI Agents, MCP, AI Engineering, and Projects.
-- Verify prerequisites: Strong JS/Node/Git/API foundation; no advanced math or ML required.
-- Set up your workflow: MYON (Make Your Own Notes), community engagement, and public sharing.
-- Commit the three essentials: Curiosity, Time, and Undivided Attention.

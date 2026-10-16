@@ -482,25 +482,3 @@ The episode concludes with Akshay revisiting the **five pillars** of what Namast
 | **Transformers** | 2017+ | Attention mechanism, parallel processing | Still needs huge compute |
 | **Large Language Models** | 2020+ | Billion-parameter models understand language | Hallucinations, context limits |
 | **AI Agents** | 2024+ | Autonomous planning, tool use, multi-step execution | Early stage, reliability challenges |
-
----
-
-## Summary Checklist
-
-- Understand what intelligence is and its different types (human, animal, artificial, and synthetic).
-- Know the early AI foundations: Turing Test (1950), John McCarthy coining Artificial Intelligence at Dartmouth (1955-1956), and the Deep Blue chess milestone (1997).
-- Understand the founding conjecture of AI: that every aspect of learning and intelligence can be described precisely enough for a machine to simulate it.
-- Know the complete evolution timeline: Rule-Based → ML → Deep Learning → Transformers → LLMs → Agents.
-- Understand why rule-based systems failed and how machine learning solved it.
-- Know the three primary types of machine learning (Supervised, Unsupervised, and Reinforcement) and their real-world examples.
-- Understand why Reinforcement Learning is an independent paradigm rather than a subset of unsupervised learning.
-- Understand the three key limitations of classical machine learning: manual feature engineering, handling unstructured data, and the performance plateau.
-- Know what neural networks and deep neural networks are and why depth matters.
-- Understand the significance of the Transformer architecture and the "Attention Is All You Need" paper.
-- Know what Large Language Models are and how they generate text.
-- Trace the GPT journey from GPT-1 (117M params) to GPT-4o.
-- Understand why ChatGPT was a watershed moment for AI accessibility.
-- Know the major players in the AI race and their key contributions.
-- Understand what AI Agents are and how they differ from simple chatbots.
-- Be aware of where the industry is heading: Agentic AI, Multimodal, Reasoning Models, Robotics, and more.
-

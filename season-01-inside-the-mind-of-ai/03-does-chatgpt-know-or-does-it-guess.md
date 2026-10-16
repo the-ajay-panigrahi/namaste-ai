@@ -519,21 +519,3 @@ The answer:
 **ChatGPT generates probabilistic completions guided by billions of statistical patterns learned during training, steered by system instructions, aligned through human feedback, and grounded by external tools.**
 
 When used with tools, verified against sources, and guided by clear prompts, it becomes an indispensable intellectual amplifier.
-
----
-
-## Summary Checklist
-
-- Search engines rely on Retrieval (Crawling, Indexing, Ranking), while LLMs rely on Generation (Autoregressive Next-Token Prediction).
-- Large language models do not assemble words at random; neural weights store intricate statistical patterns of language, code, and logic.
-- Base models are frozen at their Knowledge Cutoff date and cannot know events that occurred post-training without tools.
-- A base model is like a raw car engine; an AI assistant is a complete car with steering, brakes, and safety guardrails.
-- Fluency does not equal truth; a model can articulate false statements with total conviction.
-- False Precision occurs when models output exact numbers without deterministic computation, as demonstrated in dot counting tests.
-- Models say "I do not know" due to assistant training, system prompts, weak patterns, safety rules, missing tools, or prompt phrasing.
-- External tools (Web Search, Code Execution, Calculators, Databases) provide superpowers that bridge LLMs to real-time external data.
-- The Confidence Illusion occurs because models speak authoritatively regardless of accuracy; combat it by separating facts from assumptions, asking for uncertainty, requesting sources, and using web search.
-- RAG (Retrieval + Generation) combines external evidence (from documents, databases, or live search) with natural language synthesis to ground answers in verified facts.
-- Tools reduce hallucinations but do not completely eliminate errors.
-- Models exhibit zero self-awareness; answers about identity originate from pretraining data, context, system instructions, and tools.
-- The four information paradigms are Search Engines, Base Models, Chat Assistants, and LLMs with Private Information.
