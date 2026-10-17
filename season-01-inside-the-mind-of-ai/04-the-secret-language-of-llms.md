@@ -356,22 +356,37 @@ A massive context window does not ensure flawless recall:
 
 A common misconception is that a longer prompt always produces a superior answer.
 
-### Concise vs Bloated Prompts
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/12-long-prompt-does-not-mean-better-results.png" alt="Long Prompt Does Not Equal Better Results" width="600" />
 
-- Adding unnecessary fluff, repetitive constraints, or long-winded explanations degrades output quality rather than improving it.
-- Bloated prompts dilute the attention weights of the neural network, making it harder for the model to prioritize key instructions.
-- A well-crafted, crisp prompt specifying exact constraints produces faster, more accurate responses.
+> **Key Rule**:
+> "Tokens directly affect API cost."
 
-### The Direct Cost of Tokens
+### Comparing Prompt Styles
 
-Every single token processed by an LLM carries a real computational and financial cost:
-- Input tokens consume GPU memory and compute during the prefill phase.
-- Output tokens require autoregressive sequential generation steps, consuming inference latency and compute.
-- In production applications, optimizing token counts directly reduces API bills and response latency.
+- **Concise Prompt (Fewer tokens)**:
+  ```text
+  Explain closures in JavaScript with one simple example.
+  ```
+- **Bloated Prompt (Unnecessary tokens, same output)**:
+  ```text
+  I want you to provide an explanation of the concept known as closures in the JavaScript programming language. Please ensure that your explanation is understandable and not too complicated. Also include an example that is simple and easy to follow so that a beginner can understand the concept of closures properly.
+  ```
+- **Targeted Prompt (Optimal constraints, high quality)**:
+  ```text
+  Explain closures in JavaScript to a beginner who understands functions and scope but has never seen lexical environments. Use one example involving a counter. Keep it under 250 words.
+  ```
+
+### Why Bloated Prompts Hurt Performance
+
+- Unnecessary fluff dilutes the attention mechanism of the neural network.
+- Increased token volume directly inflates inference latency and billing.
+- Clear, well-constrained instructions yield faster and more accurate responses.
 
 ---
 
 ## 15. Common Misconceptions: Fact vs Fiction
+
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/13-tokenization-misconceptions-fact-vs-fiction.png" alt="Tokenization Misconceptions Fact vs Fiction" width="600" />
 
 | Misconception | Reality |
 | :--- | :--- |
@@ -389,9 +404,12 @@ Every single token processed by an LLM carries a real computational and financia
 
 Tokenization solves the fundamental problem of converting human text into numerical values (`[45, 321, 4594, 9552, 318, 4998]`).
 
-However, Token IDs alone contain zero semantic understanding:
-- How does an LLM understand that `cat` and `dog` are four-legged animals?
-- How does it recognize that `Delhi` and `Dehradun` are both cities located in India?
-- How does it distinguish whether `Python` refers to a reptile or a programming language based on surrounding context?
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/14-embeddings-semantic-clusters-preview.png" alt="Embeddings Semantic Clusters Preview" width="600" />
 
-Token IDs provide only unique numerical labels. The true mathematical representation of **semantic meaning, conceptual relationships, and contextual similarity** is accomplished through **Embeddings**, the subject of Episode 05.
+However, Token IDs alone contain zero semantic understanding:
+- How does an LLM understand that `Dog` (ID 12), `Cat` (ID 32), and `Cow` (ID 07) belong together as animals?
+- How does it recognize that `Delhi` (ID 15), `Mumbai` (ID 51), and `India` (ID 60) share a geographical relationship?
+- How does it know that `Cricket` (ID 202), `Basketball` (ID 115), `Tennis` (ID 56), and `Football` (ID 2) are sports?
+- How does it cluster `Programming` (ID 9), `Coding` (ID 17), `JavaScript` (ID 22), `Python` (ID 34), `Ruby` (ID 68), and `React` (ID 119)?
+
+Token IDs provide only isolated integer identifiers. The mathematical representation of **semantic meaning, conceptual relationships, and high-dimensional clusters** is accomplished through **Embeddings**, the subject of Episode 05.
