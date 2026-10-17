@@ -79,10 +79,10 @@ A common misconception is that one word equals one token. In modern LLMs:
 
 Testing `Namaste AI is amazing` in tokenization tools demonstrates subword splitting:
 - Text: `Namaste AI is amazing`
-- Split into 6 tokens: `[N, amaste, AI,  is,   amazing]`
+- Split into 6 tokens: `[N, am, aste,  AI,  is,  amazing]`
 - Corresponding Token IDs: `[45, 321, 4594, 9552, 318, 4998]`
 
-Notice that `Namaste` is split into `N` and `amaste` because the full word was not stored as a single contiguous token entry in that specific tokenizer vocabulary.
+Notice that `Namaste` is split into three subword tokens: `N`, `am`, and `aste` because the full word was not stored as a single contiguous token entry in that specific tokenizer vocabulary.
 
 ### The Role of Spaces and Case Sensitivity
 
