@@ -208,18 +208,27 @@ Modern tokenizers break unfamiliar text into reusable subword units rather than 
 
 Token efficiency varies drastically across languages because pretraining corpora historically contained an overwhelming proportion of English text.
 
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/08-english-vs-other-languages-hinglish-fragmentation.png" alt="English vs Other Languages and Hinglish Challenge" width="600" />
+
+> **Key Rule**:
+> "Two sentences with the same meaning do not necessarily have the same token count."
+
 ### The Language Disparity
 
-- An identical thought expressed in English requires far fewer tokens than in Hindi, Bengali, Tamil, Telugu, or European languages.
-- In GPT-3, a single Hindi sentence often consumed 3 to 5 times more tokens than its English translation.
-- With modern tokenizers such as GPT-4o (`o200k_base`), non-English representation improved significantly due to expanded multi-lingual vocabularies, but English remains the most compact.
+Comparing identical meaning across scripts:
+- **English**: `I am learning artificial intelligence.` (Fewest tokens, highly compressed)
+- **Hindi**: `मैं आर्टिफिशियल इंटेलिजेंस सीख रहा हूँ।` (Higher token count)
+- **Hinglish**: `Main artificial intelligence seekh raha hoon.` (Subword fragmentation)
+- **Mixed script**: `मैं Artificial Intelligence सीख रहा हूँ।` (Switching vocabularies)
+
+In GPT-3, a Hindi sentence often consumed 3 to 5 times more tokens than its English equivalent. Modern tokenizers like GPT-4o (`o200k_base`) significantly improved non-English efficiency, but English remains the most compact.
 
 ### The Hinglish Fragmentation Problem
 
-Writing Indian languages in the Latin script (Hinglish) introduces substantial tokenization overhead:
-- **No standardized spelling**: The word "main" can be typed as `main`, `mai`, or `maii`. The word "samjhao" can be typed as `samjhao`, `samjhaoo`, or `samjhaaao`.
-- **Subword shattering**: Because tokenizers cannot maintain vocabulary entries for thousands of informal phonetic variations, Hinglish words get chopped into numerous small, low-efficiency token fragments (for example, `sam` + `jha` + `o`).
-- **Higher API cost and context consumption**: Writing queries in Hinglish consumes more tokens per sentence than writing in clean English.
+Hinglish mixes English vocabulary, Hindi grammar, Roman script, informal spellings, and colloquial expressions:
+- **Informal spelling variations**: The word `samjha` can be typed as `samjhao`, `samjhaao`, `samjha do`, or `samjhaado`.
+- **Subword shattering**: Humans understand all these variants effortlessly, but the tokenizer sees completely different text strings.
+- Because tokenizers cannot store thousands of informal phonetic variations, words get chopped into multiple tiny fragments (such as `sam` + `jha` + `o`), driving up token counts and API costs.
 
 ---
 
@@ -227,20 +236,22 @@ Writing Indian languages in the Latin script (Hinglish) introduces substantial t
 
 A formal metric to quantify how efficiently a tokenizer handles a given language or dataset is **Tokenization Fertility**.
 
-> **Tokenization Fertility**: The average number of tokens produced per single word in a given language.
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/09-what-is-tokenization-fertility.png" alt="What is Tokenization Fertility" width="600" />
+
+> **Tokenization Fertility**: Measures how many tokens are produced for a word, character sequence, or linguistic unit.
 >
 > `Fertility = Total Tokens / Total Words`
 
 ### Low Fertility vs High Fertility
 
 - **Low Fertility (Close to 1.0)**:
-  - Common in English (typically 1.1 to 1.3 tokens per word).
-  - Whole words or large morphemes map directly to single tokens.
-  - Results: Faster response generation, lower inference cost, and maximized context window utilization.
+  - Typical in English (around 1.1 to 1.3 tokens per word).
+  - Complete words or large morphemes map directly to single tokens.
+  - Benefits: Faster generation speed, lower inference costs, and maximal context window utilization.
 - **High Fertility (2.0 to 4.0+)**:
-  - Common in non-Latin scripts, regional languages, and informal transliterations.
-  - Single words are chopped into multiple fragments.
-  - Results: Higher API billing, slower completion speed, and premature context window exhaustion.
+  - Common in non-Latin scripts, regional Indian languages, and informal transliterations.
+  - Text is divided into numerous tiny pieces.
+  - Drawbacks: Higher API billing, slower output generation, and premature context window exhaustion.
 
 ---
 
@@ -284,24 +295,29 @@ The AI framework bundles the system instructions, conversation history, and user
 
 ## 13. The Context Window and Short-Term Memory
 
-LLMs do not maintain persistent, living memory across chats. When an AI remembers earlier parts of a conversation, it is because previous messages are repeatedly passed back into the model on every new turn.
+A language model does not have unlimited working memory. When an AI remembers earlier parts of a conversation, it is because previous messages are repeatedly passed back into the model on every new turn.
 
 > **Context Window**: The maximum volume of tokenized information that a model can accept and process within a single inference request.
 
 In simple terms, the context window is the **short-term working memory** of the AI.
 
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/10-context-window-components-shared-budget.png" alt="Context Window Components and Shared Budget" width="600" />
+
+> **Key Rule**:
+> "Context window is shared between what you send and what the model generates."
+
 ### What Occupies the Context Window?
 
-The context window is a single shared bucket that holds:
+The context window holds:
 1. System instructions and safety guardrails.
 2. Complete preceding chat history.
-3. Uploaded documents, code files, or reference data.
-4. Tool and function calling inputs and outputs.
-5. The latest user prompt.
-6. The new response tokens being actively generated by the model.
+3. Uploaded documents and code files.
+4. Retrieved information (via RAG).
+5. Tool and function outputs.
+6. Current user prompt.
+7. Model generated response tokens.
 
-> [!IMPORTANT]
-> The context window budget is shared between input and output. If a model has a 128,000 token context window and your prompt plus chat history consumes 120,000 tokens, the model can generate at most 8,000 output tokens.
+All of these consume tokens from the same maximum context allocation.
 
 ### Context Window Capacity Across Model Generations
 
@@ -311,12 +327,22 @@ The context window is a single shared bucket that holds:
 - **GPT-4o**: 128,000 tokens.
 - **Gemini 1.5 Pro**: 1,000,000 to 2,000,000+ tokens.
 
-### Handling Context Window Overflow
+### What Happens When the Context Window Fills?
 
-When a conversation or input document exceeds the maximum token limit:
-- **Truncation**: The system discards the oldest messages in the chat history. The AI appears to forget earlier agreements or context.
-- **Summarization**: Earlier conversation turns are periodically compressed into a concise summary prompt, reducing thousands of conversation tokens into a small summary block.
-- **Modular Chat Organization**: Dividing large tasks into separate chats (Module A in Chat 1, Module B in Chat 2) rather than accumulating weeks of unrelated tasks in a single conversation.
+When conversation volume or reference documentation exceeds the maximum context length, applications employ different strategies:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/11-what-happens-when-context-window-fills.png" alt="What Happens When Context Window Fills" width="600" />
+
+1. **Rejecting the request**: Throwing an error when input tokens exceed capacity.
+2. **Truncating input**: Discarding portions of user input or conversation history.
+3. **Removing older conversation turns**: Dropping the earliest messages so recent exchanges remain active.
+4. **Summarizing previous messages**: Condensing long discussion history into a compact summary block.
+5. **Retrieving only relevant sections (RAG)**: Using vector search to inject only pertinent excerpts rather than entire libraries.
+6. **Asking the user to shorten input**: Prompting the user to trim their text.
+7. **Splitting the work into multiple requests**: Modularizing large tasks across separate requests or chats.
+
+> [!IMPORTANT]
+> Do not assume that an AI product permanently remembers every message simply because it appears in the chat interface. The visible conversation in the UI and the exact text currently included in the context of the model are not always identical.
 
 ### The "Lost in the Middle" Phenomenon
 
