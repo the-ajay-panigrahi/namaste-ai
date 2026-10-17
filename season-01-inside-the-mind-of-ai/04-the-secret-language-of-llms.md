@@ -84,8 +84,120 @@ Testing `Namaste AI is amazing` in tokenization tools demonstrates subword split
 
 Notice that `Namaste` is split into `N` and `amaste` because the full word was not stored as a single contiguous token entry in that specific tokenizer vocabulary.
 
+### The Role of Spaces and Case Sensitivity
+
+In modern tokenizers, whitespace and letter casing are integral parts of the token:
+- A leading space changes the token: `" amazing"` with a leading space has a different Token ID than `"amazing"` without a space.
+- Casing matters: `"Amazing"` starting with a capital letter produces a different Token ID than lowercase `"amazing"`.
+- Punctuation, dashes, and brackets each possess dedicated token mappings.
+
 ### Tokenizer Inspection Tools
 
 The tokenization process can be observed interactively using:
 - **OpenAI Tokenizer**: `https://platform.openai.com/tokenizer`
 - **Tiktokenizer**: `https://tiktokenizer.vercel.app/`
+
+---
+
+## 6. Why Models Use Subword Tokenization
+
+To understand why modern LLMs use subwords, consider the trade-offs of the three alternative strategies:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/04-why-models-use-subword-tokenization-tradeoff.png" alt="Why Models Use Subword Tokenization Tradeoff" width="600" />
+
+> **Key Rule of Thumb**:
+> "Word tokenization creates very lengthy vocabulary. Character tokenization creates very long sequences. Subword is a balance of both."
+
+### Comparison of Tokenization Strategies
+
+| Strategy | Vocabulary Size | Sequence Length | Primary Disadvantage |
+| :--- | :--- | :--- | :--- |
+| **Word Tokenization** | Massive (millions of words) | Short | Out of Vocabulary (OOV) errors for new words, typos, or slang; huge memory footprint. |
+| **Character Tokenization** | Tiny (100 to 256 characters) | Extremely long | Quadratic compute cost in attention; wastes context window; hard to learn word semantics. |
+| **Subword Tokenization** | Balanced (32k to 200k tokens) | Moderate | Requires an algorithmic tokenizer step, but handles unseen words gracefully. |
+
+### Advantages of the Subword Approach
+
+- **Vocabulary Efficiency**: Decomposes complex terms into reusable subword components. For example, `untrustable` splits into `un`, `trust`, and `able`. The prefix `un` and suffix `able` can be reused across hundreds of other words.
+- **Zero Out of Vocabulary Failures**: Any brand-new word, slang term, or typo can still be processed by breaking it down into known subwords or characters.
+- **Context Window Conservation**: Produces compact sequences compared to character-based approaches, saving valuable context window space and compute.
+
+---
+
+## 7. Vocabulary and Token ID Mapping
+
+Every tokenizer contains a fixed **vocabulary**.
+
+> **Vocabulary**: The complete collection of tokens that the tokenizer knows how to represent directly.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/05-vocabulary-and-token-id-mapping.png" alt="Vocabulary and Token ID Mapping" width="600" />
+
+### Simplified Vocabulary Example
+
+| Token | Token ID |
+| :--- | :--- |
+| `"the"` | 10 |
+| `"is"` | 11 |
+| `"Java"` | 12 |
+| `"Script"` | 13 |
+| `"."` | 14 |
+| `"ing"` | 15 |
+
+When the tokenizer encounters `"JavaScript"`, it maps the string to two sequential tokens: `"Java"` (ID 12) followed by `"Script"` (ID 13).
+
+### Real-World Vocabulary Scales
+
+Different generations of models feature varying vocabulary sizes:
+- **GPT-3 (`r50k_base`)**: Approximately 50,000 tokens.
+- **GPT-4 (`cl100k_base`)**: Approximately 100,000 tokens.
+- **GPT-4o (`o200k_base`)**: Approximately 200,000 tokens.
+- **LLaMA 3**: Approximately 128,000 tokens.
+
+A larger vocabulary allows a model to represent text in fewer tokens, improving processing speed and multi-language efficiency.
+
+> [!NOTE]
+> Token IDs represent arbitrary integer indices within the vocabulary table. They carry no intrinsic mathematical ranking: Token ID 108 is not greater or more meaningful than Token ID 12.
+
+---
+
+## 8. Subword Tokenization Algorithms
+
+Different AI organizations employ different mathematical algorithms to build and optimize tokenizers:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/06-byte-pair-encoding-bpe-merging-pairs.png" alt="Byte Pair Encoding BPE Merging Pairs" width="600" />
+
+<img src="../assets/season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms/07-bpe-wordpiece-unigram-comparison.png" alt="BPE vs WordPiece vs Unigram Comparison" width="600" />
+
+### 1. Byte Pair Encoding (BPE)
+
+- **Used by**: OpenAI (GPT-2, GPT-3, GPT-4, GPT-4o) and Meta (LLaMA via SentencePiece-BPE).
+- **Core Mechanic**: **Bottom-up merging** of frequent adjacent pairs.
+- **How it works**:
+  1. Starts at the base level with individual bytes or characters (each byte is 8 bits, 0 to 255).
+  2. Scans the training corpus and counts the frequency of all adjacent character or byte pairs.
+  3. Iteratively merges the most frequently occurring pair into a single new token entry.
+  4. Example: `l` and `o` frequently appear together, merging into `lo`. Then `lo` and `w` merge into `low`.
+  5. The token `low` is now reused to efficiently form `lower` (`low` + `er`) and `lowest` (`low` + `est`).
+  6. Reusable subwords like `un` and `able` are merged once and shared across `untrustable`, `unconditionable`, `unmanageable`, `unimaginable`, and `unrelateable`.
+  7. Merging repeats until the vocabulary reaches its target size.
+
+### 2. WordPiece
+
+- **Used by**: Google (BERT).
+- **Core Mechanic**: **Likelihood-based pattern selection**.
+- **How it works**:
+  - Builds vocabulary pieces based on how useful they are for representing the training data using a likelihood-based criterion rather than pure frequency.
+  - Matches useful vocabulary pieces using a longest-match-first strategy for each pre-tokenized word.
+  - Denotes continuation subwords with special prefix markers like `##` (for example, `play` and `##ing`).
+
+### 3. Unigram
+
+- **Used by**: SentencePiece (T5, ALBERT).
+- **Core Mechanic**: **Top-down pruning** (the inverse of BPE).
+- **How it works**:
+  - Begins with a very large set of candidate words and subwords.
+  - Progressively prunes and eliminates the least useful pieces based on a loss function until reaching the target vocabulary size.
+
+### Summary Rule
+
+Modern tokenizers break unfamiliar text into reusable subword units rather than treating every complete word as unique.
