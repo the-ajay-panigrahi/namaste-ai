@@ -26,6 +26,8 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | :---: | :--- | :---: |
 | 01 | Welcome to Namaste AI | [Read Notes](season-01-inside-the-mind-of-ai/01-welcome-to-namaste-ai.md) |
 | 02 | Evolution of AI | [Read Notes](season-01-inside-the-mind-of-ai/02-evolution-of-ai.md) |
+| 03 | Does ChatGPT Know or Does It Guess? | [Read Notes](season-01-inside-the-mind-of-ai/03-does-chatgpt-know-or-does-it-guess.md) |
+| 04 | The Secret Language of LLMs | [Read Notes](season-01-inside-the-mind-of-ai/04-the-secret-language-of-llms.md) |
 
 ---
 
