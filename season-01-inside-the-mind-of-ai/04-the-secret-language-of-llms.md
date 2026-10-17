@@ -170,37 +170,21 @@ Different AI organizations employ different mathematical algorithms to build and
 
 ### 1. Byte Pair Encoding (BPE)
 
-- **Used by**: OpenAI (GPT-2, GPT-3, GPT-4, GPT-4o) and Meta (LLaMA via SentencePiece-BPE).
-- **Core Mechanic**: **Bottom-up merging** of frequent adjacent pairs.
-- **How it works**:
-  1. Starts at the base level with individual bytes or characters (each byte is 8 bits, 0 to 255).
-  2. Scans the training corpus and counts the frequency of all adjacent character or byte pairs.
-  3. Iteratively merges the most frequently occurring pair into a single new token entry.
-  4. Example: `l` and `o` frequently appear together, merging into `lo`. Then `lo` and `w` merge into `low`.
-  5. The token `low` is now reused to efficiently form `lower` (`low` + `er`) and `lowest` (`low` + `est`).
-  6. Reusable subwords like `un` and `able` are merged once and shared across `untrustable`, `unconditionable`, `unmanageable`, `unimaginable`, and `unrelateable`.
-  7. Merging repeats until the vocabulary reaches its target size.
+- **Definition**: A bottom-up algorithm that starts with single characters or bytes and repeatedly merges the most frequently occurring adjacent pairs into new tokens.
+- **Example**: `l` and `o` frequently appear together and merge into `lo`, which then merges with `w` to create `low`.
+- **Used by**: OpenAI (GPT models) and Meta (LLaMA).
 
 ### 2. WordPiece
 
+- **Definition**: A bottom-up algorithm similar to BPE, but merges pairs based on statistical likelihood rather than pure frequency count.
+- **Example**: Breaks words into stems and marked continuation pieces, such as `playing` into `play` and `##ing`.
 - **Used by**: Google (BERT).
-- **Core Mechanic**: **Likelihood-based pattern selection**.
-- **How it works**:
-  - Builds vocabulary pieces based on how useful they are for representing the training data using a likelihood-based criterion rather than pure frequency.
-  - Matches useful vocabulary pieces using a longest-match-first strategy for each pre-tokenized word.
-  - Denotes continuation subwords with special prefix markers like `##` (for example, `play` and `##ing`).
 
 ### 3. Unigram
 
-- **Used by**: SentencePiece (T5, ALBERT).
-- **Core Mechanic**: **Top-down pruning** (the inverse of BPE).
-- **How it works**:
-  - Begins with a very large set of candidate words and subwords.
-  - Progressively prunes and eliminates the least useful pieces based on a loss function until reaching the target vocabulary size.
-
-### Summary Rule
-
-Modern tokenizers break unfamiliar text into reusable subword units rather than treating every complete word as unique.
+- **Definition**: A top-down algorithm that starts with a huge collection of words and subwords, then iteratively prunes away the least useful pieces until reaching the target vocabulary size.
+- **Example**: Evaluates all potential candidate pieces and discards rare fragments that do not meaningfully reduce training loss.
+- **Used by**: Google (SentencePiece, T5, ALBERT).
 
 ---
 
