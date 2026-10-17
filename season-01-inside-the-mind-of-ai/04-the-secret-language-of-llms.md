@@ -170,21 +170,21 @@ Different AI organizations employ different mathematical algorithms to build and
 
 ### 1. Byte Pair Encoding (BPE)
 
-- **Definition**: A bottom-up algorithm that starts with single characters or bytes and repeatedly merges the most frequently occurring adjacent pairs into new tokens.
-- **Example**: `l` and `o` frequently appear together and merge into `lo`, which then merges with `w` to create `low`.
+- **How it works**: Starts with single letters and glues together letters that appear side by side most often.
+- **Example**: `l` and `o` appear together a lot, so they become `lo`. Then `lo` and `w` join to make `low`.
 - **Used by**: OpenAI (GPT models) and Meta (LLaMA).
 
 ### 2. WordPiece
 
-- **Definition**: A bottom-up algorithm similar to BPE, but merges pairs based on statistical likelihood rather than pure frequency count.
-- **Example**: Breaks words into stems and marked continuation pieces, such as `playing` into `play` and `##ing`.
+- **How it works**: Like BPE, but glues pieces together based on which combination makes the most sense mathematically, not just which one appears the most.
+- **Example**: Breaks words into a base word plus an ending tag, such as `playing` into `play` and `##ing`.
 - **Used by**: Google (BERT).
 
 ### 3. Unigram
 
-- **Definition**: A top-down algorithm that starts with a huge collection of words and subwords, then iteratively prunes away the least useful pieces until reaching the target vocabulary size.
-- **Example**: Evaluates all potential candidate pieces and discards rare fragments that do not meaningfully reduce training loss.
-- **Used by**: Google (SentencePiece, T5, ALBERT).
+- **How it works**: Starts with a massive basket of words and pieces, then throws away the least useful ones until only the best pieces remain.
+- **Example**: Begins with thousands of possible combinations and cuts out rare, useless pieces.
+- **Used by**: Google (SentencePiece, T5).
 
 ---
 
