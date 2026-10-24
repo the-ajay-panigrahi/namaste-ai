@@ -2,7 +2,7 @@
 
 > **Season 1: Inside the Mind of AI**  
 > Instructor: **Akshay Saini** (NamasteDev)  
-> Topic: How AI Understands Meaning, Polysemy, Why Token IDs Lack Meaning, Vectorization, and Dimensions
+> Topic: How AI Understands Meaning, Token IDs vs Embeddings, Vectorization, Dimensions, Semantic and Cosine Similarity, Positional Encodings, Token vs Text Embeddings, Polysemy, Transformer Contextualisation, Bias, and Common Misconceptions
 
 ---
 
