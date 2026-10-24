@@ -484,5 +484,153 @@ A vital distinction to understand:
 - In "I ate an **apple** in the afternoon", the surrounding words "ate" and "afternoon" shift the internal representation of "apple" toward food and fruit.
 - In "**Apple** launched a new device", the surrounding words "launched" and "device" shift the representation toward technology and hardware.
 
+---
+
+## 16. Positional Embeddings: Why Order Matters
+
+Token embeddings alone identify *which* words are present, but they tell the model nothing about the sequence.
+
+Consider two sentences composed of the exact same tokens:
+1. "**Dog** bites **man**."
+2. "**Man** bites **dog**."
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/20-positional-embeddings-dog-bites-man-order-matters.png" alt="Positional Embeddings: Order Matters" width="600" />
+
+Notice the critical distinction:
+- Both sentences share identical tokens (`dog`, `bites`, `man`).
+- Both sentences look up the exact same initial Token IDs and token embedding vectors.
+- Yet sentence 1 describes an everyday unfortunate event, while sentence 2 describes sensational breaking news.
+
+### The Formula: Identity Plus Order
+
+In natural language, syntax and sequential order dictate meaning:
+- **Token Embedding**: Tells the model **which token is present** (lexical identity).
+- **Positional Information**: Tells the model **where that token appears in the sequence** (temporal / spatial order).
+
+$$\text{Model Input} = \text{Identity} + \text{Order}$$
+
+Large Language Models incorporate positional information using architecture-specific techniques known as **Positional Embeddings** or **Positional Encodings** (such as learned positional embeddings or rotary position embeddings), ensuring the model distinguishes subject from object.
+
+---
+
+## 17. Token Embeddings vs Text Embeddings
+
+Whenever the term "embedding" appears in artificial intelligence, always ask:
+
+> **An embedding of what, and for which task?**
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/21-token-embeddings-vs-text-embeddings-scope-comparison.png" alt="Token Embeddings vs Text Embeddings Scope Comparison" width="600" />
+
+Embeddings operate at different granularities depending on the architectural objective:
+
+| Property | Token Embeddings | Text Embeddings (Sentence / Document) |
+| :--- | :--- | :--- |
+| **Input Unit** | An individual token (word, subword, character). | An entire sentence, paragraph, or document. |
+| **Output Representation** | Multiple vectors (one distinct vector per token). | One single vector summarizing the entire text. |
+| **Primary Use Case** | Internal processing inside Large Language Models. | External retrieval, semantic search, clustering, and RAG. |
+| **Analogy** | The dictionary definition of a single word or syllable. | The summary synopsis printed on the back cover of a book. |
+
+### Summary of Scope
+- **Token embeddings** help a language model read and process text sequentially.
+- **Text embeddings** help applications compare, rank, and retrieve complete passages of content.
+
+---
+
+## 18. Static vs Contextual Meaning: Resolving Polysemy
+
+In human language, a single word often carries multiple distinct meanings depending on surrounding words. This linguistic property is known as **polysemy**.
+
+Consider two occurrences of the word "apple":
+1. "I ate an **Apple** after lunch."
+2. "**Apple** released a new device."
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/22-static-vs-contextual-meaning-polysemy-apple-example.png" alt="Static vs Contextual Meaning: Resolving Polysemy" width="600" />
+
+### The Failure of Static Embeddings
+
+Early embedding architectures (such as Word2Vec or GloVe) assigned a single, fixed vector to each vocabulary word:
+- The word "apple" had one static numerical vector.
+- That single vector was forced to compromise between edible fruits and consumer electronics.
+- Static systems inevitably fail when faced with polysemy, homonyms, and shifting contexts.
+
+### The Modern Solution: Contextual Representations
+
+Modern Large Language Models resolve polysemy through **contextual representations**:
+- The representation of a token dynamically adapts based on surrounding words.
+- The same token develops completely different internal vectors depending on the sentence around it.
+
+---
+
+## 19. How Modern LLMs Handle Context (Contextualisation)
+
+To observe how context modifies representation, consider classic polysemic words:
+
+- **Bank**:
+  - "I deposited money in the **bank**." (financial institution)
+  - "We sat beside the river **bank**." (geographical riverbank)
+- **Bat**:
+  - "He hit the ball with a **bat**." (wooden sports equipment)
+  - "A **bat** flew out of the cave." (nocturnal flying mammal)
+- **Java**:
+  - "**Java** is a programming language." (computer software)
+  - "**Java** is an island in Indonesia." (geographical island)
+  - "I ordered **Java** at the cafe." (hot brewed coffee)
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/23-transformer-contextualisation-multi-layer-representation.png" alt="Transformer Contextualisation Across Multiple Layers" width="600" />
+
+### The Transformer Multi-Layer Pipeline
+
+In Transformer-based models (introduced in the landmark 2017 Google research paper "Attention Is All You Need"):
+
+1. **Initial Token Embedding**: The token receives an initial static embedding from the lookup table. In this stage, "bank" in both sentences has identical numerical values.
+2. **Multi-Layer Self-Attention**: As the token passes through dozens of Transformer layers, self-attention mechanisms compare the token against every other token in the sentence.
+3. **Contextual Transformation**: 
+   - When "bank" interacts with "deposited" and "money", its vector shifts into the financial coordinate space.
+   - When "bank" interacts with "river" and "sat", its vector shifts into the riparian geographic space.
+
+> **The initial token may be the same. But after the model processes the complete sentence through multiple layers, its internal representation changes according to context.**
+
+---
+
+## 20. Bias in Embeddings: Flaws in Human Data
+
+Because embedding models learn exclusively from data, they inherit the flaws and prejudices present in human text.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/24-bias-in-embeddings-human-data-flaws-stereotypes.png" alt="Bias in Embeddings: Flaws in Human-Created Data" width="600" />
+
+Human-created data contains:
+- Cultural prejudices
+- Historical inequalities
+- Stereotypical assumptions
+- Representation gaps
+- Social and economic biases
+
+### How Bias Enters Vector Space
+
+When an embedding model reads billions of internet documents:
+- If certain occupations historically co-occur disproportionately with one gender in text, the model encodes that correlation into the vector distance between the occupation and the gender.
+- Embeddings faithfully reflect statistical patterns in data, including associations society may not want automated systems to reproduce.
+
+> **Embeddings represent patterns in data that we may not want the system to reproduce.**
+
+Addressing this requires careful data curation, debiasing algorithms, safety alignment, and responsible engineering by AI developers.
+
+---
+
+## 21. Common Misconceptions vs Architectural Reality
+
+To master embeddings from first principles, distinguish between frequent misconceptions and engineering facts:
+
+| Common Misconception | Architectural Reality |
+| :--- | :--- |
+| **An embedding is a dictionary of tokens** | An embedding is a dense numerical vector capturing learned statistical relationships across data. |
+| **Each dimension has one clear human meaning** | Meaning is distributed across thousands of dimensions; individual coordinates rarely map to single human words. |
+| **Similar embeddings mean identical meaning** | Vectors indicate topical similarity, association, category membership, or shared context; they can even represent antonyms. |
+| **Embedding similarity proves a statement is true** | Vector similarity measures semantic relatedness, not factual veracity, safety, or quality. |
+| **One embedding model works equally well for every task** | Model performance varies significantly by language, domain, sequence length, and training objective. |
+| **Visual clusters perfectly represent the original space** | Two-dimensional and three-dimensional projections compress high-dimensional geometry and inevitably lose information. |
+| **A larger embedding dimension is always better** | Higher dimensions capture subtler patterns, but introduce significant trade-offs in storage, memory bandwidth, latency, and computational cost. |
+
+
 
 
