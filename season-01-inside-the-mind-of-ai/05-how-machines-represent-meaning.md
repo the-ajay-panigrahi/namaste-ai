@@ -366,7 +366,36 @@ To determine whether two vectors are semantically close, computers apply a mathe
 
 ### Why Direction Matters More Than Length
 
-A sentence can be three words long or thirty words long. Its absolute vector length (magnitude) may vary, but its conceptual direction in semantic space remains consistent. Cosine similarity normalizes vector lengths and measures the angle $\theta$ between them.
+A sentence can be two words long or thirty words long. Its absolute vector length (magnitude) may vary, but its conceptual direction in semantic space remains consistent. Cosine similarity normalizes vector lengths and measures the angle $\theta$ between them.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/16-cosine-similarity-length-vs-intent-password-example.png" alt="Cosine Similarity Length vs Intent Example" width="600" />
+
+Consider an example of varying sentence lengths:
+- **Vector A**: "Reset password" (concise, 2 words)
+- **Vector B**: "I no longer remember my password and need to create a new one" (detailed, 12 words)
+
+Even though Vector B has much greater length (magnitude) than Vector A:
+- Both point in the exact same semantic direction.
+- Their cosine similarity is very high.
+- In contrast, a different query like Vector C ("Open savings account") points in a completely different direction and yields low similarity.
+
+This normalization allows systems to match sentences containing different amounts of detail that express the same general intent.
+
+### The Mathematical Formula for Cosine Similarity
+
+Mathematically, cosine similarity is defined as the **dot product of two vectors divided by the product of their magnitudes (L2 norms)**:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/15-how-to-calculate-cosine-similarity-formula.png" alt="How to Calculate Cosine Similarity Formula" width="600" />
+
+$$\text{similarity}(A, B) = \cos(\theta) = \frac{A \cdot B}{\|A\| \|B\|}$$
+
+Where:
+- $\theta$ is the angle between Vector $A$ and Vector $B$.
+- $A \cdot B$ is the **dot product**, calculated by multiplying corresponding components and summing them:
+  $$A \cdot B = \sum_{i=1}^n A_i B_i = A_1 B_1 + A_2 B_2 + \dots + A_n B_n$$
+- $\|A\|$ represents the **magnitude (L2 norm)** of Vector $A$, calculated using the Euclidean norm formula:
+  $$\|A\| = \sqrt{A_1^2 + A_2^2 + \dots + A_n^2}$$
+- Dividing by $\|A\| \|B\|$ scales the output, eliminating the influence of vector lengths and isolating pure directional alignment.
 
 ### The Mathematical Scale of Cosine Similarity
 
@@ -378,9 +407,82 @@ Cosine values range strictly between `-1.0` and `+1.0`:
 | **Angle close to $90^\circ$** | **Close to $0.0$** | **Orthogonal Vectors** | The texts are unrelated and mathematically independent. |
 | **Angle close to $180^\circ$** | **Close to $-1.0$** | **Opposite Vectors** | The texts represent diametrically opposing concepts. |
 
-### Summary of Geometric Closeness
-- If two vectors point in a similar direction ($\cos(\theta) \to 1$), the represented concepts are semantically similar.
-- If two vectors point in perpendicular directions ($\cos(\theta) \to 0$), the concepts have no relationship.
-- If two vectors point in opposite directions ($\cos(\theta) \to -1$), the concepts are opposites.
+---
+
+## 13. Cosine Similarity Does Not Understand Truth
+
+A critical safety and architectural principle must be recognized:
+
+> **Cosine similarity does not understand or verify truth.**
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/17-similarity-does-not-equal-truth-safety-quality.png" alt="Similarity Does Not Equal Truth or Safety" width="600" />
+
+Consider why high embedding similarity does not imply factual correctness:
+- **Two false statements can be semantically similar**: "The moon is made of green cheese" and "The moon is made of cheddar" will have high cosine similarity because both discuss celestial bodies and dairy compositions.
+- **Two harmful instructions can be semantically similar**: Variations of malicious code or dangerous recipes align closely in vector space.
+- **Two texts can share a topic yet disagree completely**:
+  - Statement 1: "JavaScript is the best language."
+  - Statement 2: "JavaScript is the worst language."
+  - Both statements express subjective opinions about JavaScript. Because their vocabulary and conceptual domains overlap heavily, their vectors sit close together in semantic space, despite being polar opposites in sentiment.
+
+### Core Architectural Principle
+
+> **Embeddings capture relationships. They do not independently verify facts, intent, quality, or safety.**
+
+Verifying factual accuracy, detecting hallucinations, and enforcing ethical guardrails require separate validation layers beyond raw embedding similarity.
+
+---
+
+## 14. Interactive 3D Visualizations: TensorFlow Embedding Projector
+
+To observe how thousands of tokens organize in multi-dimensional space, researchers use dimensionality reduction tools such as the **TensorFlow Embedding Projector** (`projector.tensorflow.org`).
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/18-tensorflow-embedding-projector-3d-visualization.png" alt="TensorFlow Embedding Projector 3D Visualization" width="600" />
+
+In this tool, 10,000 words from Word2Vec datasets originally embedded in 200 dimensions are projected into interactive 3D coordinates using algorithms like Principal Component Analysis (PCA) or t-SNE:
+- **Querying "sun"**: Nearest neighbors in original space include `moon`, `solar`, `sky`, `earth`, `orbit`, `eclipse`, `planet`, `celestial`, and `jupiter`.
+- **Unrelated concepts**: Words such as `playstation` sit far across the spatial cloud.
+- **Querying "king"**: Surrounding neighbors include `queen`, `monarch`, `throne`, `emperor`, `prince`, and `battle`.
+- **Querying "JavaScript"**: Surrounding neighbors include `browser`, `syntax`, `compiler`, `python`, and `java`.
+- **Querying "bank"**: Demonstrates polysemic clusters, grouping near financial tokens (`account`, `loan`, `atm`) while simultaneously maintaining proximity to geographic tokens (`river`, `canal`).
+
+### Note on Dimensional Projections
+
+While 2D and 3D visual projections allow human comprehension of multi-dimensional spaces, reducing hundreds or thousands of dimensions down to two or three inevitably compresses and loses geometric information.
+
+---
+
+## 15. Token Embeddings: Transforming Meaningless IDs into Dense Vectors
+
+To understand how text enters a Large Language Model from first principles, consider the sentence:
+
+$$\text{"I love JavaScript"}$$
+
+<img src="../assets/season-01-inside-the-mind-of-ai/05-how-machines-represent-meaning/19-token-embeddings-meaningless-id-to-dense-vector.png" alt="Token Embeddings: Meaningless IDs to Dense Vectors" width="600" />
+
+The pipeline transitions text through three distinct representations:
+
+1. **Text Tokenization**: The raw string is broken into individual tokens:
+   $$\text{"I"}, \quad \text{"love"}, \quad \text{"JavaScript"}$$
+
+2. **Token ID Assignment**: Each token is looked up in the tokenizer vocabulary and given an integer ID:
+   $$\text{Token IDs} = [12, 214, 18273]$$
+   As established, these integers are arbitrary administrative labels carrying zero conceptual meaning.
+
+3. **Token Embedding Lookup**: Each Token ID is mapped to a dense, continuous numerical vector:
+   - `12` ($\text{"I"}$) $\to [0.12, 0.43, 0.87, \dots]$
+   - `214` ($\text{"love"}$) $\to [0.41, 0.73, -0.12, \dots]$
+   - `18273` ($\text{"JavaScript"}$) $\to [0.12, -0.32, 0.08, \dots]$
+
+### The Transition from Static to Contextual Representation
+
+> **This process replaces a meaningless token ID with a dense numerical vector. That vector becomes the initial representation of the token in the model.**
+
+A vital distinction to understand:
+- The vector retrieved from the token embedding table is an **initial, static representation**.
+- As the model processes the entire sentence through Transformer layers, **the representation changes based on context**.
+- In "I ate an **apple** in the afternoon", the surrounding words "ate" and "afternoon" shift the internal representation of "apple" toward food and fruit.
+- In "**Apple** launched a new device", the surrounding words "launched" and "device" shift the representation toward technology and hardware.
+
 
 
