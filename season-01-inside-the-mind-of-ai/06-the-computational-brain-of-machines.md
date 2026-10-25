@@ -134,6 +134,13 @@ Every word in this name defines a foundational architectural property:
 - The underlying deep learning architecture that serves as the computational engine of modern artificial intelligence.
 - The Transformer is the true architectural hero enabling current foundation models.
 
+### GPT as an Architecture vs ChatGPT as a Product
+
+A common industry point of confusion:
+- **GPT is an architectural classification**: Any model based on a Generative Pre-trained Transformer is a GPT. Gemini, Claude, Grok, and Meta Llama are all generative pre-trained transformers under the hood.
+- **ChatGPT is a specific product**: OpenAI was the first mover to launch a conversational assistant built on a GPT, branding it "ChatGPT".
+- The analogy of a vehicle manufacturer naming a car model "DriveCar": consumers might associate driving with that brand, but the underlying mechanics represent the general category of automobiles.
+
 ---
 
 ## 5. The Transformer Architecture and Attention
@@ -151,13 +158,145 @@ RNNs and LSTMs process language sequentially, one word after another:
 
 ### The 2017 Revolution: "Attention Is All You Need"
 
-In 2017, a team of Google researchers published the historic research paper titled **"Attention Is All You Need"**:
-- **Authors**: Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin.
-- The paper introduced the **Transformer** architecture, which abandoned recurrence entirely in favor of an **Attention mechanism**.
+In 2017, a team of researchers at Google and the University of Toronto published the landmark research paper titled **"Attention Is All You Need"**:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/06-attention-is-all-you-need-research-paper-arxiv.png" alt="Attention Is All You Need Research Paper arXiv" width="600" />
+
+The eight contributing authors:
+1. **Ashish Vaswani** (Google Brain)
+2. **Noam Shazeer** (Google Brain)
+3. **Niki Parmar** (Google Research)
+4. **Jakob Uszkoreit** (Google Research)
+5. **Llion Jones** (Google Research)
+6. **Aidan N. Gomez** (University of Toronto)
+7. **Łukasz Kaiser** (Google Brain)
+8. **Illia Polosukhin** (Google Research)
+
+This paper discarded recurrent architectures entirely, proposing that sequence processing could rely solely on **Attention mechanisms**.
 
 > **A Transformer is a type of neural network design that reads entire sentences or blocks of data all at once instead of word by word.**
 
-### The Core Principle
+### The Nested Hierarchy of Modern AI
 
-- The heart of the neural network is the **Transformer**.
-- The heart of the Transformer is **Attention**.
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/07-llm-transformer-attention-heart-hierarchy.png" alt="LLM Transformer Attention Hierarchy" width="600" />
+
+To visualize how modern language models are structured:
+- At the outer system level is the **Large Language Model (LLM)**.
+- Inside the heart of the LLM resides the **Transformer architecture**.
+- Inside the heart of the Transformer resides the **Attention mechanism**.
+
+$$\text{Attention} \subset \text{Transformer} \subset \text{LLM}$$
+
+---
+
+## 6. Attention and Self-Attention Explained
+
+What does the term **Attention** mean in artificial intelligence?
+
+> **Attention is a mathematical tool that helps computer models focus on the most important parts of data while ignoring the rest.**
+
+In intuitive terms, attention answers a simple question:
+$$\text{"Which pieces of information should I focus on right now, and how much?"}$$
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/08-attention-and-self-attention-cat-and-bank-examples.png" alt="Attention and Self-Attention Cat and Bank Examples" width="600" />
+
+### What is Self-Attention?
+
+> **Self-attention is attention between tokens of the same sequence.**
+
+Self-attention allows every token in a sentence to look at all other tokens in that same sentence simultaneously to understand their relationships and contextual meaning.
+
+### Resolving Pronoun Ambiguity
+
+Consider the sentence:
+
+$$\text{"The cat sat on the mat because it was tired."}$$
+
+In older sequential networks (RNNs), resolving the pronoun `"it"` was difficult:
+- Does `"it"` refer to the `"cat"` or the `"mat"`?
+- Because cats get tired, a human immediately links `"it"` to `"cat"`.
+
+With self-attention, the token `"it"` computes numerical relationship scores against every other token in the sentence:
+- `"it"` $\to$ `"cat"`: `0.90` (strongest relationship)
+- `"it"` $\to$ `"mat"`: `0.40`
+- `"it"` $\to$ `"sat"`: `0.20`
+- `"it"` $\to$ `"the"`: `0.10`
+
+The model mathematically concludes that `"it"` refers to `"cat"`.
+
+If the sentence is modified:
+$$\text{"The cat sat on the mat because it was cozy."}$$
+
+Because a mat is cozy, the self-attention weights shift, linking `"it"` with high probability to `"mat"`.
+
+### Resolving Polysemic Words
+
+Self-attention also solves words with multiple meanings (polysemy):
+- **Example A**: `"I went to the bank to deposit money."`
+  - The token `"bank"` attends heavily to `"deposit"` and `"money"`.
+  - Its vector shifts into the financial coordinate space.
+- **Example B**: `"I sat on the bank of the river."`
+  - The token `"bank"` attends to `"sat"` and `"river"`.
+  - Its vector shifts into the geographical riverfront coordinate space.
+
+---
+
+## 7. Entering the Transformer Block: Token and Positional Embeddings
+
+Before information enters the Transformer computation stages, input tokens are transformed:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/09-token-plus-positional-embedding-into-transformer-block.png" alt="Token Plus Positional Embedding into Transformer Block" width="600" />
+
+1. **Token Embeddings**: Numerical vectors retrieved from the embedding matrix that represent the lexical identity of each token (answering "which token is present").
+2. **Positional Embeddings**: Numerical vectors encoding sequence position (answering "where the token appears").
+
+### Why Both Are Essential
+
+Consider two sentences composed of the exact same vocabulary:
+- `"The dog bites a man."`
+- `"The man bites a dog."`
+
+Both sentences share identical tokens and initial token vectors. Without positional information, a machine would see no distinction between everyday misfortune and breaking news.
+
+$$\text{Transformer Input} = \text{Token Embedding} + \text{Positional Embedding}$$
+
+Adding these two vectors creates a combined numerical array that captures both identity and order, which is then passed into the Transformer block.
+
+---
+
+## 8. Layer Normalization (LayerNorm): Stabilizing Deep Computations
+
+Inside the Transformer block, the very first operation applied to the input is **Layer Normalization** (abbreviated as **LayerNorm**).
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/10-layer-normalization-stabilizing-activations-scale.png" alt="Layer Normalization Stabilizing Activations Scale" width="600" />
+
+> **Layer Normalization is a technique used to keep the numbers flowing through a neural network at a more stable scale.**
+
+### The Problem: Unstable Scales in Deep Networks
+
+Modern LLMs consist of dozens of stacked layers performing intensive mathematical operations:
+- Repeated matrix multiplications, dot products, additions, and feed-forward updates.
+- As activations pass through consecutive layers, numerical values can drift or explode:
+  $$\text{Initial Vector}: [0.20, -0.34, 0.50, 0.62] \implies \text{After Unbounded Math}: [22.0, 36.0, 14.0, 56.0]$$
+- If numbers become excessively large or small:
+  - Gradients can explode or vanish during training.
+  - Floating-point calculations lose precision.
+  - The network becomes difficult or impossible to train stably.
+
+### The Solution: Normalizing Scale While Preserving Meaning
+
+Layer Normalization adjusts the numbers across each layer so that:
+- The mean (average) centers around `0`.
+- The variance (spread) scales to `1`.
+
+Example transformation:
+$$[22.0, 36.0, 14.0, 56.0] \xrightarrow{\text{LayerNorm}} [0.18, -0.26, 0.37, 0.58]$$
+
+Does Layer Normalization destroy meaning?
+- No. Normalization rescales the numbers down by proportional ratios.
+- The relative relationships, angles, and directional patterns between features remain intact, while their absolute magnitude is brought back into a stable numerical range.
+
+### Pervasive Stabilization
+
+Layer normalization is not performed once. It is applied repeatedly inside every Transformer block (before or after attention, and before or after feed-forward networks) to guarantee that internal representations remain well-behaved throughout deep architectures.
+
