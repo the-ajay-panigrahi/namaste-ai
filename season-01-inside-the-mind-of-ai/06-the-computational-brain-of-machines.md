@@ -456,4 +456,117 @@ While the 2017 paper introduced the encoder-decoder structure, modern autoregres
 - The model consists of stacked decoder blocks using causal (masked) multi-head self-attention, residual connections, layer normalization, and feed-forward networks.
 - This simplified, highly scalable structure allows models to train on massive web corpora and predict subsequent tokens with unprecedented accuracy.
 
+---
+
+## 14. Interactive 3D Architecture Walkthrough: Brendan Bycroft Visualizer
+
+To observe how mathematical operations flow through a complete language model, researchers and students rely on the interactive 3D visualizer created by **Brendan Bycroft** (`bbycroft.net/llm`).
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/16-3d-llm-visualization-nanogpt-overview.png" alt="3D LLM Visualization nano-gpt Overview" width="600" />
+
+### Exploring nano-gpt
+
+The visualizer demonstrates **nano-gpt**, a small educational model with 85,584 parameters designed by Andrej Karpathy:
+- **Task**: Takes an input sequence of six characters (`C B A B B C`) and sorts them alphabetically into (`A B B C C`).
+- **Input Pipeline**: Each character is mapped to a Token ID (`2, 1, 0, 1, 1, 2`), converted into a 48-dimensional token embedding, and added to a 48-dimensional positional embedding.
+- **Architecture**: Contains 3 stacked Transformer blocks, each featuring 3 parallel attention heads and a feed-forward network.
+
+---
+
+## 15. The Mathematics of Self-Attention: Query (Q), Key (K), and Value (V)
+
+Inside each self-attention head, information retrieval relies on three distinct vectors: **Query ($Q$)**, **Key ($K$)**, and **Value ($V$)**.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/17-q-k-v-self-attention-weights-and-vectors-bbycroft.png" alt="Q K V Self-Attention Weights and Vectors bbycroft" width="600" />
+
+### The Core Meaning of Q, K, and V
+
+For every token passing through an attention head:
+1. **Query ($Q$)**: The question posed by the token: *"What information am I looking for?"*
+2. **Key ($K$)**: The label or identity card offered by every other token: *"What information do I have to offer?"*
+3. **Value ($V$)**: The actual content or feature payload: *"Here is my actual representation."*
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/18-query-key-value-chalkboard-analogy.png" alt="Query Key Value Chalkboard Analogy" width="600" />
+
+### The Object / Dictionary Analogy
+
+Think of self-attention like accessing a JavaScript dictionary object:
+
+```javascript
+const user = { name: "Akshay" };
+user["name"]; // "name" is the Key, matching our Query, returning the Value "Akshay"
+```
+
+In language modeling:
+- In the sentence `"I went to the bank to deposit money"`, consider evaluating the token `"bank"`.
+- The token `"bank"` sends out a Query vector $Q(\text{"bank"})$.
+- Every other token in the sentence provides a Key vector: $K(\text{"went"})$, $K(\text{"deposit"})$, $K(\text{"money"})$, etc.
+- By computing the dot product between $Q(\text{"bank"})$ and all Keys, the model calculates how relevant each token is to `"bank"`.
+- Because $Q(\text{"bank"})$ matches strongly with $K(\text{"deposit"})$ and $K(\text{"money"})$, the model retrieves large fractions of their Value vectors ($V$), blending financial context into `"bank"`.
+
+### The Scaled Dot-Product Attention Formula
+
+The complete mathematical definition of self-attention from the 2017 Google paper is:
+
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V$$
+
+Where:
+- $Q K^T$ calculates the **dot product** between every Query vector and every Key vector, measuring raw compatibility scores across all token pairs.
+- $\sqrt{d_k}$ is the **scaling factor**, where $d_k$ is the dimension of the Key vectors. When vectors have high dimensionality, dot products grow very large in magnitude, which pushes Softmax into regions with near-zero gradients. Dividing by $\sqrt{d_k}$ keeps numbers in a stable range.
+- $\text{softmax}(\dots)$ converts raw compatibility scores into non-negative probabilities summing to $1.0$ across the sequence. This produces the **Attention Matrix**.
+- Multiplying by $V$ computes a weighted sum of the Value vectors, producing the updated, context-rich representation for each token.
+
+---
+
+## 16. Why the Attention Matrix is Triangular: Causal Masking in Action
+
+When inspecting the Attention Matrix in the 3D visualizer, notice its distinctive **lower-triangular shape**:
+- All values in the upper-right portion of the matrix are zero (`0.00`).
+- This triangular structure is the direct mathematical manifestation of **Causal Masking**.
+
+### The Masking Rule
+
+$$\text{Token at position } t \text{ can only attend to positions } 1, 2, \dots, t$$
+
+- Token 1 (`"I"`) can only look at `"I"`.
+- Token 2 (`"went"`) can look at `"I"` and `"went"`.
+- Token 3 (`"to"`) can look at `"I"`, `"went"`, and `"to"`.
+- Token 4 (`"the"`) can look at `"I"`, `"went"`, `"to"`, and `"the"`.
+- Token 5 (`"bank"`) can look at all preceding tokens up to `"bank"`. Future tokens (`"deposit"`, `"money"`) are completely blocked.
+
+### The Forward-Context Paradox Resolved
+
+If `"bank"` appears before `"money"`, how can the model know that `"bank"` refers to a financial institution when future words are masked?
+
+- While the initial token `"bank"` cannot peek forward into `"money"`:
+- When the sequence later reaches the word `"money"`, the token `"money"` looks backward and attends strongly to `"bank"`.
+- In subsequent stacked Transformer layers, this joint relationship is mixed across the entire sequence representation.
+- By the time the final token is generated, the network possesses full contextual awareness of all prior tokens.
+
+---
+
+## 17. Stacking Transformer Blocks and Model Scaling
+
+A single Transformer block consists of:
+1. **Layer Normalization 1**
+2. **Multi-Head Causal Self-Attention** ($Q, K, V$ matrix operations across parallel heads)
+3. **Residual Connection 1** ($x + \text{Attention}(x)$)
+4. **Layer Normalization 2**
+5. **Feed-Forward Network (MLP)** (dimensional expansion, activation, dimensional compression)
+6. **Residual Connection 2** ($x + \text{FFN}(x)$)
+
+### From Educational Models to Frontier LLMs
+
+Modern frontier models do not invent a new architecture: they stack this identical Transformer block dozens of times and scale internal dimensions:
+
+| Model Architecture | Layers (Blocks) | Attention Heads | Embedding Dimension ($d_{\text{model}}$) | Total Parameters |
+| :--- | :--- | :--- | :--- | :--- |
+| **nano-gpt** | 3 | 3 | 48 | ~85,000 |
+| **GPT-2 (Small)** | 12 | 12 | 768 | 117 Million |
+| **GPT-2 (XL)** | 48 | 25 | 1600 | 1.5 Billion |
+| **GPT-3** | 96 | 96 | 12,288 | 175 Billion |
+
+The intelligence of modern language models emerges from repeating this disciplined linear algebra pipeline across hundreds of billions of trained parameters.
+
+
 
