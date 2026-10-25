@@ -300,3 +300,160 @@ Does Layer Normalization destroy meaning?
 
 Layer normalization is not performed once. It is applied repeatedly inside every Transformer block (before or after attention, and before or after feed-forward networks) to guarantee that internal representations remain well-behaved throughout deep architectures.
 
+---
+
+## 9. Multi-Head Causal (Masked) Self-Attention
+
+Following the initial normalization, representations enter the core engine of the Transformer block: **Multi-Head Causal (Masked) Self-Attention**.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/11-multi-head-causal-masked-self-attention.png" alt="Multi-Head Causal Masked Self Attention" width="600" />
+
+To master this subsystem from first principles, break down each term:
+
+### 1. Self-Attention
+- Allows each token to gather information from other tokens across the same sequence.
+- Every token evaluates its relationship with every other token simultaneously.
+
+### 2. Causal / Masked Attention
+- **Masked** means deliberately hiding portions of the sequence.
+- **Causal** means causes precede effects (the past leads into the future).
+- Information is strictly constrained to flow in one direction:
+  $$\text{Past} \longrightarrow \text{Present}$$
+- A token is allowed to look at itself and preceding tokens in the sequence, but it is strictly blocked from looking at future tokens.
+- **Why Causal Masking is Vital**: In autoregressive generation, future words have not been generated yet. If a model could look into the future during training, it would cheat by copying future answers rather than learning to predict.
+
+### 3. Multi-Head Attention
+- Rather than running a single self-attention mechanism, the network runs **multiple self-attention heads in parallel**.
+- **Why Multi-Head is Necessary**: A single sentence contains multiple layers of linguistic information:
+  - One attention head may focus on grammatical structure and subject-verb agreements.
+  - Another head may track pronoun references (connecting "it" to "cat").
+  - Another head may monitor domain and topical associations (connecting "bank" to "money").
+- Running multiple heads in parallel allows the network to capture diverse, complex relationships simultaneously.
+
+> **Multi-head causal self-attention allows every token to gather information from previous tokens using multiple attention heads, while preventing it from looking into the future.**
+
+---
+
+## 10. Residual / Skip Connections: Learning Incremental Updates
+
+Surrounding the attention block is a shortcut known as a **Residual Connection** (or **Skip Connection**), indicated in architecture diagrams by an arrow and a plus (`+`) symbol bypassing the layer.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/12-residual-skip-connection-update-mechanism.png" alt="Residual Skip Connection Update Mechanism" width="600" />
+
+> **A residual connection is a direct shortcut that lets input data bypass a processing layer and add itself to the layer output.**
+
+Instead of replacing the existing vector representation with the output of the attention layer, the model adds the original input back to the result:
+
+$$\text{Output} = x + \text{Attention}(x)$$
+
+### Numerical Walkthrough
+
+Suppose the token representation entering attention is:
+$$x = [1.0, 2.0, 3.0]$$
+
+The self-attention mechanism processes this vector and generates an attention adjustment:
+$$\text{Attention}(x) = [0.2, -0.5, 0.7]$$
+
+Instead of passing only the new numbers forward, the network adds the original vector back:
+$$\text{Combined Output} = [1.0, 2.0, 3.0] + [0.2, -0.5, 0.7] = [1.2, 1.5, 3.7]$$
+
+### The Architectural Philosophy of Residuals
+
+- **No Information Loss**: Without skip connections, passing data through dozens of deep layers causes original signals to degrade.
+- **Incremental Refinement**:
+  > **A Transformer layer does not throw away what it already knows. It learns an update and adds that update on top of the existing representation.**
+- Each layer functions as a modifier that enriches the representation rather than rebuilding it from scratch.
+
+---
+
+## 11. Feed-Forward Networks (FFN): Independent Token Processing
+
+After self-attention, residual addition, and layer normalization, representations pass into the **Feed-Forward Network (FFN)** (also known as a Multi-Layer Perceptron or MLP).
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/13-feed-forward-network-independent-token-processing.png" alt="Feed-Forward Network Independent Token Processing" width="600" />
+
+### The Core Division of Labor
+
+The relationship between Self-Attention and the Feed-Forward Network follows a distinct division of labor:
+- **During Self-Attention**: Tokens interact and communicate with each other across the sequence.
+- **During FFN**: Each token is processed independently.
+
+> **Attention lets tokens communicate. FFN lets each token think and process what it learned.**
+
+### Structure and Function of the FFN
+
+1. **Fully Connected Architecture**: Composed of stacked linear layers with non-linear activation functions.
+2. **Dimensional Expansion**: The network typically projects the token vector from its base dimension ($d_{\text{model}}$) into a much wider hidden dimension (often $4 \times d_{\text{model}}$), allowing the model to compute complex feature interactions, before projecting it back down.
+3. **Updating Internal Meaning**: When a word like `"bank"` gathers context about `"river"` during self-attention, the FFN takes that gathered context and modifies the internal coordinates of `"bank"` so it behaves like a riparian landform in subsequent stages.
+4. **Second Residual and LayerNorm**: Just like the attention block, the FFN is surrounded by a residual skip connection followed by layer normalization:
+   $$\text{Block Output} = \text{LayerNorm}(x + \text{FFN}(x))$$
+
+---
+
+## 12. Linear Layer and Softmax: Transforming Vectors into Probabilities
+
+After passing through stacked Transformer blocks, the model possesses a refined continuous numerical vector for the final position in the prompt.
+
+However, a raw continuous vector cannot be directly printed as text. The system must map this vector back to the vocabulary to select an actual word. This transformation is handled by two final stages: the **Linear Layer** and the **Softmax Layer**.
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/14-linear-and-softmax-logits-to-probabilities.png" alt="Linear and Softmax Logits to Probabilities" width="600" />
+
+### 1. The Linear Layer (Vocabulary Projection)
+
+The linear layer acts as a mathematical projection matrix that changes the size and shape of the data:
+- It projects the final embedding vector (for example, 768 or 1536 dimensions) across the entire vocabulary size (e.g., 50,000 to 200,000 distinct tokens).
+- It produces an unnormalized raw score for every token in the vocabulary.
+- These raw numerical scores are known as **Logits**.
+
+Sample raw logits for candidate tokens:
+- `cat`: `2.0`
+- `dog`: `1.0`
+- `car`: `0.2`
+- `pizza`: `-0.5`
+
+Because logits are arbitrary real numbers with varying magnitudes and negative signs, they cannot be interpreted directly as probabilities.
+
+### 2. The Softmax Layer (Probability Normalization)
+
+> **A linear layer acts like a math machine that changes the size and shape of information, while a Softmax layer acts like a referee that turns raw numbers into percentages that add up to 100%.**
+
+The Softmax function applies an exponential normalization formula to all logits:
+
+$$P(\text{token}_i) = \frac{e^{\text{logit}_i}}{\sum_{j} e^{\text{logit}_j}}$$
+
+This mathematical transformation guarantees two essential properties:
+1. Every score is converted into a positive value between `0.0` and `1.0`.
+2. All scores across the entire vocabulary sum to exactly `1.0` (`100%`).
+
+Applying Softmax to the sample logits yields:
+- `cat`: `0.62` (`62%` probability)
+- `dog`: `0.23` (`23%` probability)
+- `car`: `0.10` (`10%` probability)
+- `pizza`: `0.05` (`5%` probability)
+- **Total Sum**: `1.00` (`100%`)
+
+Now the system has an interpretable probability distribution across its entire vocabulary, allowing decoding strategies to select the next predicted token.
+
+---
+
+## 13. The Full Transformer Architecture: 2017 Paper vs Modern LLMs
+
+The foundational Transformer blueprint was detailed in Figure 1 of the 2017 research paper *"Attention Is All You Need"*:
+
+<img src="../assets/season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines/15-original-transformer-model-architecture-paper-figure-1.png" alt="Original Transformer Model Architecture Paper Figure 1" width="600" />
+
+### The Original Encoder-Decoder Design
+
+The original 2017 architecture was designed for sequence-to-sequence translation (for example, translating English text into German) and contained two distinct towers:
+1. **The Encoder (Left Tower)**: Processes the complete input sentence simultaneously using unmasked bidirectional self-attention to build a rich representation of the source text.
+2. **The Decoder (Right Tower)**: Generates the target translation autoregressively, using masked self-attention on already generated tokens and cross-attention into the encoder representations.
+
+### The Evolution to Modern Decoder-Only LLMs
+
+While the 2017 paper introduced the encoder-decoder structure, modern autoregressive foundation models (such as GPT-3, GPT-4, Gemini, Claude, and LLaMA) adopted a **Decoder-Only architecture**:
+- The separate encoder tower is eliminated.
+- Text prompts and responses are treated as a single continuous sequence.
+- The model consists of stacked decoder blocks using causal (masked) multi-head self-attention, residual connections, layer normalization, and feed-forward networks.
+- This simplified, highly scalable structure allows models to train on massive web corpora and predict subsequent tokens with unprecedented accuracy.
+
+
