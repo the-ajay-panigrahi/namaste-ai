@@ -32,6 +32,7 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | 06 | The Computational Brain of Machines | [Read Notes](season-01-inside-the-mind-of-ai/06-the-computational-brain-of-machines.md) |
 | 07 | Sharpening the Brain | [Read Notes](season-01-inside-the-mind-of-ai/07-sharpening-the-brain.md) |
 | 08 | How AI Models Become Assistants | [Read Notes](season-01-inside-the-mind-of-ai/08-how-ai-models-become-assistants.md) |
+| 09 | Can AI Really Think? | [Read Notes](season-01-inside-the-mind-of-ai/09-can-ai-really-think.md) |
 
 ---
 
