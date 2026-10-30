@@ -34,6 +34,12 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | 08 | How AI Models Become Assistants | [Read Notes](season-01-inside-the-mind-of-ai/08-how-ai-models-become-assistants.md) |
 | 09 | Can AI Really Think? | [Read Notes](season-01-inside-the-mind-of-ai/09-can-ai-really-think.md) |
 
+### Season 2: AI Native Software Engineer
+
+| Episode | Title | Notes |
+| :---: | :--- | :---: |
+| 01 | Project Introduction | [Read Notes](season-02-ai-native-software-engineer/01-project-introduction.md) |
+
 ---
 
 [Learn more about Namaste AI](https://namastedev.com/learn/namaste-ai)
