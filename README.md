@@ -39,6 +39,7 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | Episode | Title | Notes |
 | :---: | :--- | :---: |
 | 01 | Project Introduction | [Read Notes](season-02-ai-native-software-engineer/01-project-introduction.md) |
+| 02 | Ideation & Brainstorming Features | [Read Notes](season-02-ai-native-software-engineer/02-ideation-and-brainstorming-features.md) |
 
 ---
 
