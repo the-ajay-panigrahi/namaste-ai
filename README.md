@@ -41,6 +41,7 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | 01 | Project Introduction | [Read Notes](season-02-ai-native-software-engineer/01-project-introduction.md) |
 | 02 | Ideation & Brainstorming Features | [Read Notes](season-02-ai-native-software-engineer/02-ideation-and-brainstorming-features.md) |
 | 03 | Product Requirements Documentation (PRD) using AI | [Read Notes](season-02-ai-native-software-engineer/03-product-requirements-documentation-using-ai.md) |
+| 04 | System Design Architecture Documentation using AI | [Read Notes](season-02-ai-native-software-engineer/04-system-design-architecture-documentation-using-ai.md) |
 
 ---
 
