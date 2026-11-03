@@ -43,6 +43,7 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | 03 | Product Requirements Documentation (PRD) using AI | [Read Notes](season-02-ai-native-software-engineer/03-product-requirements-documentation-using-ai.md) |
 | 04 | System Design Architecture Documentation using AI | [Read Notes](season-02-ai-native-software-engineer/04-system-design-architecture-documentation-using-ai.md) |
 | 05 | Database & API Design Documentation using AI | [Read Notes](season-02-ai-native-software-engineer/05-database-and-api-design-documentation-using-ai.md) |
+| 06 | UI & UX Design using AI | [Read Notes](season-02-ai-native-software-engineer/06-ui-ux-design-using-ai.md) |
 
 ---
 
