@@ -46,6 +46,7 @@ The course follows a **JavaScript-First AI Development** approach, with **Python
 | 06 | UI & UX Design using AI | [Read Notes](season-02-ai-native-software-engineer/06-ui-ux-design-using-ai.md) |
 | 07 | Building the Scaffold using AI | [Read Notes](season-02-ai-native-software-engineer/07-building-the-scaffold-using-ai.md) |
 | 08 | Building Features using AI | [Read Notes](season-02-ai-native-software-engineer/08-building-features-using-ai.md) |
+| 09 | Testing and Code Review using AI | [Read Notes](season-02-ai-native-software-engineer/09-testing-and-code-review-using-ai.md) |
 
 ---
 
