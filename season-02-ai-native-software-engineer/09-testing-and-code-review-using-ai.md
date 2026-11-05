@@ -138,3 +138,4 @@ The role of the software engineer has fundamentally evolved:
   - Guarding security boundaries and environment secrets.
   - Designing multi-agent workflows and orchestrating handoffs between development, QA, and review.
   - Verifying real-world user behavior and making critical design decisions.
+

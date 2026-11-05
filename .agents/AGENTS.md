@@ -9,7 +9,7 @@
   - **Focus on Course Content**: Do not add separate external sources or research disclaimer sections. Keep notes strictly focused on the course material.
   - **No Summary Checklist**: Never write a summary checklist at the end of notes or episodes.
   - **First Principles Foundation**: Begin notes from first principles, clearly establishing why a technology is needed and explaining core meanings concisely.
-- **Automatic Git Commits**: Automatically commit changes once a major portion of episode notes is complete or when meaningful milestones are reached, using clear and descriptive conventional commit messages.
+- **Automatic Git Commits & Sync**: Once notes are made or a meaningful milestone is reached, automatically commit all changes using clear and descriptive conventional commit messages, and immediately sync (push) the changes to the remote repository.
 - **Image Sizing**: Format all Markdown images using HTML `<img>` tags with a fixed width of 600 (`<img src="..." alt="..." width="600" />`) instead of standard Markdown image syntax (`![]()`), ensuring consistent display sizes across previewers.
 - **Image Ordering**: Images provided for an episode must appear in the markdown notes in the exact numerical sequence provided (e.g. image 01, image 02, image 03, etc.).
 - **Cleanup of Temporary Assets and Reference Files**: Once note generation and verification are complete, automatically delete temporary reference PDF files (such as `e1.pdf`) and temporary incoming asset folders (such as `assetsfors2ep1`) after their contents have been copied and renamed into the permanent `assets/` directory structure, unless explicitly instructed otherwise.
